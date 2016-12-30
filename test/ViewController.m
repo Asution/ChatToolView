@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "ChatToolView.h"
+#import "ChatToolMacro.h"
+#import "UIView+Extend.h"
 
 @interface ViewController ()
 
@@ -23,7 +25,8 @@
     UIImage *img = [UIImage imageNamed:@"tupian_icon"];
     
     ChatToolView *chatView = [[ChatToolView alloc] initWithImages:@[img,img,img] superView:self.view];
-    chatView.frame = CGRectMake(0, 300, [UIScreen mainScreen].bounds.size.width, 208.0f + 50);
+    chatView.frame = CGRectMake(0, 300, [UIScreen mainScreen].bounds.size.width, 43 + 49.5f);
+    chatView.y = Screen_Height - chatView.height;
     self.chatView = chatView;
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

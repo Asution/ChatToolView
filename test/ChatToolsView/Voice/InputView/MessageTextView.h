@@ -12,7 +12,7 @@ typedef NS_ENUM(NSUInteger, XHInputViewType) {
     InputViewTypeShareMenu,
 };
 
-typedef void (^TextDidChangeBlock) (CGFloat maxTextHeight);
+typedef void (^TextDidChangeBlock) (CGFloat maxTextHeight, NSString *text, BOOL isChange);
 
 @interface MessageTextView : UITextView
 

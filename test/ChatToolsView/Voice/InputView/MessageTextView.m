@@ -79,12 +79,17 @@
 #pragma mark - Notifications
 
 - (void)didReceiveTextDidChangeNotification:(NSNotification *)notification {
-    self.block([self numberOfLinesOfText] * 33);
+    self.block([self heightForString:self andWidth:self.bounds.size.width], self.text, YES);
+    [self scrollRangeToVisible:NSMakeRange(self.text.length, 1)];
+
     [self setNeedsDisplay];
 }
 
 - (void)didReceiveTextDidBegineNotification:(NSNotification *)notification {
-    self.block([self numberOfLinesOfText] * 33);
+    self.block([self heightForString:self andWidth:self.bounds.size.width], self.text, NO);
+    [self scrollRangeToVisible:NSMakeRange(self.text.length, 1)];
+    
+    [self setNeedsDisplay];
 }
 
 #pragma mark - Life cycle
@@ -101,7 +106,10 @@
                                                object:self];
     
     _placeHolderTextColor = [UIColor lightGrayColor];
-    self.scrollIndicatorInsets = UIEdgeInsetsMake(10.0f, 7.0f, 10.0f, 8.0f);
+    self.scrollIndicatorInsets = UIEdgeInsetsMake(10.0f, 0, 10.0f, 8.0f);
+//    self.textContainerInset = UIEdgeInsetsMake(0,16, 0, 0);   //光标位置
+    self.layoutManager.allowsNonContiguousLayout = NO;
+
     self.contentInset = UIEdgeInsetsZero;
     self.scrollEnabled = YES;
     self.scrollsToTop = NO;
@@ -141,7 +149,7 @@
     
     if([self.text length] == 0 && self.placeHolder) {
         CGRect placeHolderRect = CGRectMake(10.0f,
-                                            7.0f,
+                                            6.0f,
                                             rect.size.width,
                                             rect.size.height);
         
@@ -164,6 +172,16 @@
                                alignment:self.textAlignment];
         }
     }
+}
+
+
+- (float)heightForString:(UITextView *)textView andWidth:(float)width{
+    
+    CGSize
+    sizeToFit = [textView sizeThatFits:CGSizeMake(width, MAXFLOAT)];
+    
+    return sizeToFit.height;
+    
 }
 
 @end

@@ -27,17 +27,17 @@
 
 static NSString *const placeHolderStr = @"请输入聊天内容...";
 
-static NSInteger const functionViewY = 49.5 + 43;
-
+static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 高度
 
 @interface ChatToolView() <UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic , weak) UIButton *albumBtn;    //相册按钮
 
 @property (nonatomic , weak) UIView *functionView;  //工具栏选项bg view
 
 @property (nonatomic, weak)  UIActivityIndicatorView *idView;
-    
+
 @property (nonatomic, strong) ImagesFlowLayout *flowLayout; //collection view layout
 
 @property (nonatomic, strong) MomentDataSource *dataSource;
@@ -55,7 +55,9 @@ static NSInteger const functionViewY = 49.5 + 43;
 @property (nonatomic , weak) UIView *lineView;  //线
 @property (nonatomic , weak) MessageTextView *messageTextView;
 
-@property (nonatomic , assign) BOOL isTalking;
+@property (assign, nonatomic) CGFloat keyboardY;
+
+@property (nonatomic , assign) BOOL isTalking;  //是否正在聊天
 
 /**  判断是不是超出了录音最大时长 */
 @property (nonatomic) BOOL isMaxTimeStop;
@@ -97,12 +99,26 @@ static NSInteger const functionViewY = 49.5 + 43;
         [self initCollectioView];
         [self initChooseImages];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+
         [superView addSubview:self];
         
         self.superVc = [self getCurrentViewController];
         
     }
     return self;
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - 监听键盘的改变
+- (void)keyboardWillChangeFrame:(NSNotification *)notification{
+    //1. 获取键盘的 Y 值
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardY = keyboardFrame.origin.y;
+    self.keyboardY = keyboardY;
 }
 
 -(UIViewController *)getCurrentViewController{
@@ -304,7 +320,7 @@ static NSInteger const functionViewY = 49.5 + 43;
 }
 
 - (void)startRecord {
-    [self.voiceRecordHUD startRecordingHUDAtView:self];
+    [self.voiceRecordHUD startRecordingHUDAtView:self.superview];
     [self.voiceRecordHelper startRecordingWithStartRecorderCompletion:^{
     }];
 }
@@ -349,16 +365,12 @@ static NSInteger const functionViewY = 49.5 + 43;
 - (VoiceRecordManager *)voiceRecordHelper {
     if (!_voiceRecordManager) {
         _isMaxTimeStop = NO;
-        
+       
         WeakSelf
         _voiceRecordManager = [[VoiceRecordManager alloc] init];
         _voiceRecordManager.maxTimeStopRecorderCompletion = ^{
             CLog(@"已经达到最大限制时间了，进入下一步的提示");
-            
-            // Unselect and unhilight the hold down button, and set isMaxTimeStop to YES.
-//            UIButton *holdDown = weakSelf.messageInputView.holdDownButton;
-//            holdDown.selected = NO;
-//            holdDown.highlighted = NO;
+            weakSelf.isTalking = NO;
             weakSelf.isMaxTimeStop = YES;
             
             [weakSelf finishRecorded];
@@ -375,18 +387,28 @@ static NSInteger const functionViewY = 49.5 + 43;
 #pragma mark - 初始化一些功能
 
 #pragma mark - button delegate
+#pragma mark - 功能选择
 - (void)btnClick:(UIButton *)btn{
     btn.selected = !btn.selected;
     ResignFirstResponder
     [self hideIndicatorView];
     switch (btn.tag) {
         case 0: //相册
+            self.talkView.hidden = YES;                             //隐藏语音按钮
+            self.albumBtn.hidden = NO;                              //进入相册
+            self.collectionView.hidden = NO;                        //显示照片列表
+            self.messageTextView.hidden = NO;                       //显示输入框
+            self.isTalking = NO;                                    //语音输入
+            [self loadMomentElementsShowIndicatorView:YES];         //记载数据
+            [self bringSubviewToFront:self.albumBtn];               //将view放入最前面
+            [self bringSubviewToFront:self.idView];
             self.lineView.y = 0;
-            self.talkView.hidden = YES;
-            self.collectionView.hidden = NO;
-            self.messageTextView.hidden = NO;
-            self.isTalking = NO;
-            [self loadMomentElementsShowIndicatorView:YES];
+            self.messageTextView.y = 10;
+            self.height = self.collectionView.height + self.messageTextView.height + 49.5 + 10;
+            self.y = Screen_Height - self.height;
+            self.functionView.y = self.messageTextView.height + 11;
+            self.collectionView.y = self.messageTextView.height + 1 + 49.5 + 10;
+            self.albumBtn.y = self.messageTextView.height + 10 + 49.5 + 158;
             break;
             
         case 1: //相机
@@ -395,15 +417,24 @@ static NSInteger const functionViewY = 49.5 + 43;
             break;
             
         case 2: //语音
-            if(self.isTalking){
+            if(self.isTalking){ //文字输入
                 self.isTalking = NO;
+//                [self.messageTextView becomeFirstResponder];
                 [self hiddenAllFunction];
-            }else{
+                self.height = self.messageTextView.height + 49.5 + 20;
+                self.y = Screen_Height - self.height;
+                self.functionView.y = self.messageTextView.height + 10;
+                self.lineView.y = 0;
+            }else{  //语音输入
                 self.isTalking = YES;
                 self.talkView.hidden = NO;
+                self.albumBtn.hidden = YES;
                 self.collectionView.hidden = YES;
                 self.messageTextView.hidden = YES;
-                self.lineView.y = self.functionView.y;
+                self.lineView.y = 0;
+                self.functionView.y = 0.5;
+                self.talkView.y = 50;
+                self.y = Screen_Height - 50 - 65;
             }
             break;
             
@@ -412,7 +443,12 @@ static NSInteger const functionViewY = 49.5 + 43;
     }
 }
 
+#pragma mark - 相册按钮
+- (void)albumBtnClick:(UIButton *)btn{
+    NSLog(@"album %s",__FUNCTION__);
+}
 
+#pragma mark - 录音监听
 - (void)holdDownButtonTouchDown {
     self.isCancelled = NO;
     self.isRecording = NO;
@@ -484,6 +520,7 @@ static NSInteger const functionViewY = 49.5 + 43;
     [self.voiceRecordHelper prepareRecordingWithPath:[self getRecorderPath] prepareRecorderCompletion:completion];
 }
 
+#pragma mark - 获取语音路径
 - (NSString *)getRecorderPath {
     NSString *recorderPath = nil;
     recorderPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
@@ -523,6 +560,15 @@ static NSInteger const functionViewY = 49.5 + 43;
     self.idView = idView;
     [self addSubview:idView];
     
+    //显示相册按钮
+    UIButton *albumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    albumBtn.frame = CGRectMake(15, self.messageTextView.height + 49.6 + 20 + 158, 35, 35);
+    albumBtn.hidden = YES;
+    albumBtn.backgroundColor = [UIColor redColor];
+    [albumBtn addTarget:self action:@selector(albumBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.albumBtn = albumBtn;
+//    [self addSubview:albumBtn];
+    
     //说话按钮bg view
     UIView *talkView = [[UIView alloc] initWithFrame:CGRectMake(0, functionViewY, Screen_Width, 65)];    //聊天bg view
     self.talkView = talkView;
@@ -553,14 +599,27 @@ static NSInteger const functionViewY = 49.5 + 43;
     lineView.backgroundColor = UIColorFromRGB(0xd1d1d1, 1);
     [self addSubview:lineView];
     
-    MessageTextView *messageTextView = [[MessageTextView alloc] initWithFrame:CGRectMake(10, 9, Screen_Width - 20, 43)];
+    MessageTextView *messageTextView = [[MessageTextView alloc] initWithFrame:CGRectMake(10, 10, Screen_Width - 20, 33)];
     messageTextView.placeHolder = placeHolderStr;
     messageTextView.placeHolderTextColor = UIColorFromRGB(0xC1BDBB,1);
     self.messageTextView = messageTextView;
     [self addSubview:messageTextView];
     
-    messageTextView.block = ^(CGFloat maxTextHeight){
+    messageTextView.block = ^(CGFloat maxTextHeight, NSString *text, BOOL isChange){
+        
         [self hiddenAllFunction];
+        if(maxTextHeight <= 120){
+            self.messageTextView.height = maxTextHeight;
+            self.messageTextView.y = 10;
+            self.lineView.y = 0;
+            self.functionView.y = maxTextHeight + 10;
+            self.height = 59.5 + maxTextHeight;
+        }else{
+            self.messageTextView.height = 120;
+            self.height = 130 + 49.5;
+            self.functionView.y = 130;
+        }
+        self.y = self.keyboardY - self.height;
     };
     
 }
@@ -568,11 +627,10 @@ static NSInteger const functionViewY = 49.5 + 43;
 #pragma mark - 隐藏所有功能,回到最初状态
 - (void)hiddenAllFunction{
     [self hideIndicatorView];
-    self.lineView.y = 0;
+    self.albumBtn.hidden = YES;                     //相册库隐藏
     self.collectionView.hidden = YES;               //相册隐藏
     self.talkView.hidden = YES;                     //语音按钮隐藏
     self.messageTextView.hidden = NO;               //文字输show
-//    [self.messageTextView becomeFirstResponder];    //注册响应者
 }
 
 @end
