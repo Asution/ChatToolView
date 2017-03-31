@@ -30,6 +30,7 @@
 
 //相册图片的选择
 #define Photo_Chat_List_Size CGSizeMake(117, 208)
+//颜色
 #define UIColorFromRGB(rgbValue, alph) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(alph)]
 
 #define kVoiceRecorderTime 60.0 //max time

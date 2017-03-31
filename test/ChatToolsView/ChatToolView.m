@@ -288,7 +288,7 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
 
 #pragma mark - 调用相机功能
 - (void)openCamera{
-    if(![self authorizationCamera]) return;
+//    if(![self authorizationCamera]) return;
     
     CameraViewController *vc = [[CameraViewController alloc] init];
     [self.superVc presentViewController:vc animated:YES completion:nil];
@@ -303,6 +303,10 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
     if(authStatus == AVAuthorizationStatusDenied || authStatus == AVAuthorizationStatusNotDetermined)
     {
         NSLog(@"不支持/未授权");
+        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        }
         //未授权
         return NO;
     }

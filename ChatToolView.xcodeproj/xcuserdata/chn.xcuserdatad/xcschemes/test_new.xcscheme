@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D694F0291CDB5B1A00B5E05B"
-               BuildableName = "test.app"
-               BlueprintName = "test"
-               ReferencedContainer = "container:test.xcodeproj">
+               BuildableName = "ChatToolView.app"
+               BlueprintName = "ChatToolView"
+               ReferencedContainer = "container:ChatToolView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D694F0291CDB5B1A00B5E05B"
-            BuildableName = "test.app"
-            BlueprintName = "test"
-            ReferencedContainer = "container:test.xcodeproj">
+            BuildableName = "ChatToolView.app"
+            BlueprintName = "ChatToolView"
+            ReferencedContainer = "container:ChatToolView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D694F0291CDB5B1A00B5E05B"
-            BuildableName = "test.app"
-            BlueprintName = "test"
-            ReferencedContainer = "container:test.xcodeproj">
+            BuildableName = "ChatToolView.app"
+            BlueprintName = "ChatToolView"
+            ReferencedContainer = "container:ChatToolView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D694F0291CDB5B1A00B5E05B"
-            BuildableName = "test.app"
-            BlueprintName = "test"
-            ReferencedContainer = "container:test.xcodeproj">
+            BuildableName = "ChatToolView.app"
+            BlueprintName = "ChatToolView"
+            ReferencedContainer = "container:ChatToolView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

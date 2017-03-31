@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D647E6601E600AA500E598EE /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D647E65F1E600AA500E598EE /* Config.xcconfig */; };
 		D65466F81E0A9196002CFFE2 /* tupian_icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D65466F71E0A9196002CFFE2 /* tupian_icon.pdf */; };
 		D65467761E0BD0E2002CFFE2 /* ChatToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = D654675C1E0BD0E2002CFFE2 /* ChatToolView.m */; };
 		D65467771E0BD0E2002CFFE2 /* AssetSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D65467601E0BD0E2002CFFE2 /* AssetSourceManager.m */; };
@@ -20,6 +21,10 @@
 		D654677F1E0BD0E2002CFFE2 /* ImagesChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D65467721E0BD0E2002CFFE2 /* ImagesChooseCell.m */; };
 		D65467801E0BD0E2002CFFE2 /* ImagesChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65467731E0BD0E2002CFFE2 /* ImagesChooseCell.xib */; };
 		D65467811E0BD0E2002CFFE2 /* ImagesFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D65467751E0BD0E2002CFFE2 /* ImagesFlowLayout.m */; };
+		D658013F1E77DA3B00360B1B /* SlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = D658013E1E77DA3B00360B1B /* SlideView.m */; };
+		D65801421E77DABD00360B1B /* UIView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D65801411E77DABD00360B1B /* UIView+Extend.m */; };
+		D65801451E77DBB000360B1B /* SlideSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65801441E77DBB000360B1B /* SlideSubView.m */; };
+		D65801481E77DBC500360B1B /* SlideCALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D65801471E77DBC500360B1B /* SlideCALayer.m */; };
 		D694F02F1CDB5B1A00B5E05B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D694F02E1CDB5B1A00B5E05B /* main.m */; };
 		D694F0321CDB5B1B00B5E05B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D694F0311CDB5B1A00B5E05B /* AppDelegate.m */; };
 		D694F0351CDB5B1B00B5E05B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D694F0341CDB5B1B00B5E05B /* ViewController.m */; };
@@ -28,6 +33,7 @@
 		D694F03D1CDB5B1B00B5E05B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D694F03B1CDB5B1B00B5E05B /* LaunchScreen.storyboard */; };
 		D6AB953E1E0D29BD0063842A /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AB953C1E0D29BD0063842A /* CameraViewController.m */; };
 		D6AB953F1E0D29BD0063842A /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6AB953D1E0D29BD0063842A /* CameraViewController.xib */; };
+		D6BC75F31E1BAA0F00223416 /* ToolsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BC75F21E1BAA0F00223416 /* ToolsView.m */; };
 		D6CFC4911E12020E007AEC67 /* CCCameraManger.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CFC48E1E12020E007AEC67 /* CCCameraManger.m */; };
 		D6CFC4921E12020E007AEC67 /* UIImage+CCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CFC4901E12020E007AEC67 /* UIImage+CCTool.m */; };
 		D6CFC4A01E124D1E007AEC67 /* VoiceRecordHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CFC49F1E124D1E007AEC67 /* VoiceRecordHUD.m */; };
@@ -35,9 +41,14 @@
 		D6CFC4AB1E124EB8007AEC67 /* VoiceRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CFC4AA1E124EB8007AEC67 /* VoiceRecordManager.m */; };
 		D6CFC4AE1E136548007AEC67 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CFC4AD1E136548007AEC67 /* MessageTextView.m */; };
 		D6CFC4B21E137FBE007AEC67 /* UIView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CFC4B11E137FBE007AEC67 /* UIView+Extend.m */; };
+		D6F4BC841E824E950087384B /* FeedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F4BC831E824E950087384B /* FeedHeaderView.m */; };
+		D6F4BC8B1E824EE80087384B /* HeaderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F4BC891E824EE80087384B /* HeaderCollectionViewCell.m */; };
+		D6F4BC8C1E824EE80087384B /* HeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F4BC8A1E824EE80087384B /* HeaderCollectionViewCell.xib */; };
+		D6F4BC901E8255530087384B /* FeedHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F4BC8F1E8255530087384B /* FeedHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D647E65F1E600AA500E598EE /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		D65466F71E0A9196002CFFE2 /* tupian_icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = tupian_icon.pdf; sourceTree = "<group>"; };
 		D654675B1E0BD0E2002CFFE2 /* ChatToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatToolView.h; sourceTree = "<group>"; };
 		D654675C1E0BD0E2002CFFE2 /* ChatToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatToolView.m; sourceTree = "<group>"; };
@@ -62,7 +73,15 @@
 		D65467731E0BD0E2002CFFE2 /* ImagesChooseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagesChooseCell.xib; sourceTree = "<group>"; };
 		D65467741E0BD0E2002CFFE2 /* ImagesFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesFlowLayout.h; sourceTree = "<group>"; };
 		D65467751E0BD0E2002CFFE2 /* ImagesFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesFlowLayout.m; sourceTree = "<group>"; };
-		D694F02A1CDB5B1A00B5E05B /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D658013D1E77DA3B00360B1B /* SlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideView.h; sourceTree = "<group>"; };
+		D658013E1E77DA3B00360B1B /* SlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideView.m; sourceTree = "<group>"; };
+		D65801401E77DABD00360B1B /* UIView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extend.h"; sourceTree = "<group>"; };
+		D65801411E77DABD00360B1B /* UIView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extend.m"; sourceTree = "<group>"; };
+		D65801431E77DBB000360B1B /* SlideSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSubView.h; sourceTree = "<group>"; };
+		D65801441E77DBB000360B1B /* SlideSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideSubView.m; sourceTree = "<group>"; };
+		D65801461E77DBC500360B1B /* SlideCALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideCALayer.h; sourceTree = "<group>"; };
+		D65801471E77DBC500360B1B /* SlideCALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideCALayer.m; sourceTree = "<group>"; };
+		D694F02A1CDB5B1A00B5E05B /* ChatToolView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatToolView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D694F02E1CDB5B1A00B5E05B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D694F0301CDB5B1A00B5E05B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D694F0311CDB5B1A00B5E05B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -75,6 +94,8 @@
 		D6AB953B1E0D29BD0063842A /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		D6AB953C1E0D29BD0063842A /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		D6AB953D1E0D29BD0063842A /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		D6BC75F11E1BAA0F00223416 /* ToolsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsView.h; sourceTree = "<group>"; };
+		D6BC75F21E1BAA0F00223416 /* ToolsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsView.m; sourceTree = "<group>"; };
 		D6CFC48D1E12020E007AEC67 /* CCCameraManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCameraManger.h; sourceTree = "<group>"; };
 		D6CFC48E1E12020E007AEC67 /* CCCameraManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCameraManger.m; sourceTree = "<group>"; };
 		D6CFC48F1E12020E007AEC67 /* UIImage+CCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CCTool.h"; sourceTree = "<group>"; };
@@ -89,6 +110,12 @@
 		D6CFC4AD1E136548007AEC67 /* MessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTextView.m; sourceTree = "<group>"; };
 		D6CFC4B01E137FBE007AEC67 /* UIView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extend.h"; sourceTree = "<group>"; };
 		D6CFC4B11E137FBE007AEC67 /* UIView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extend.m"; sourceTree = "<group>"; };
+		D6F4BC821E824E950087384B /* FeedHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedHeaderView.h; sourceTree = "<group>"; };
+		D6F4BC831E824E950087384B /* FeedHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedHeaderView.m; sourceTree = "<group>"; };
+		D6F4BC881E824EE80087384B /* HeaderCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCollectionViewCell.h; sourceTree = "<group>"; };
+		D6F4BC891E824EE80087384B /* HeaderCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCollectionViewCell.m; sourceTree = "<group>"; };
+		D6F4BC8A1E824EE80087384B /* HeaderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderCollectionViewCell.xib; sourceTree = "<group>"; };
+		D6F4BC8F1E8255530087384B /* FeedHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,10 +196,25 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		D658013C1E77DA2D00360B1B /* SlideView */ = {
+			isa = PBXGroup;
+			children = (
+				D658013D1E77DA3B00360B1B /* SlideView.h */,
+				D658013E1E77DA3B00360B1B /* SlideView.m */,
+				D65801431E77DBB000360B1B /* SlideSubView.h */,
+				D65801441E77DBB000360B1B /* SlideSubView.m */,
+				D65801461E77DBC500360B1B /* SlideCALayer.h */,
+				D65801471E77DBC500360B1B /* SlideCALayer.m */,
+				D65801401E77DABD00360B1B /* UIView+Extend.h */,
+				D65801411E77DABD00360B1B /* UIView+Extend.m */,
+			);
+			path = SlideView;
+			sourceTree = "<group>";
+		};
 		D694F0211CDB5B1A00B5E05B = {
 			isa = PBXGroup;
 			children = (
-				D694F02C1CDB5B1A00B5E05B /* test */,
+				D694F02C1CDB5B1A00B5E05B /* ChatToolView */,
 				D694F02B1CDB5B1A00B5E05B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -180,18 +222,22 @@
 		D694F02B1CDB5B1A00B5E05B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D694F02A1CDB5B1A00B5E05B /* test.app */,
+				D694F02A1CDB5B1A00B5E05B /* ChatToolView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D694F02C1CDB5B1A00B5E05B /* test */ = {
+		D694F02C1CDB5B1A00B5E05B /* ChatToolView */ = {
 			isa = PBXGroup;
 			children = (
 				D694F0301CDB5B1A00B5E05B /* AppDelegate.h */,
 				D694F0311CDB5B1A00B5E05B /* AppDelegate.m */,
 				D694F0331CDB5B1B00B5E05B /* ViewController.h */,
 				D694F0341CDB5B1B00B5E05B /* ViewController.m */,
+				D6BC75F11E1BAA0F00223416 /* ToolsView.h */,
+				D6BC75F21E1BAA0F00223416 /* ToolsView.m */,
+				D6F4BC811E824E850087384B /* FeedHeaderView */,
+				D658013C1E77DA2D00360B1B /* SlideView */,
 				D65467001E0B97AA002CFFE2 /* ChatToolsView */,
 				D694F0361CDB5B1B00B5E05B /* Main.storyboard */,
 				D694F0391CDB5B1B00B5E05B /* Assets.xcassets */,
@@ -199,7 +245,9 @@
 				D694F03E1CDB5B1B00B5E05B /* Info.plist */,
 				D65466F71E0A9196002CFFE2 /* tupian_icon.pdf */,
 				D694F02D1CDB5B1A00B5E05B /* Supporting Files */,
+				D647E65F1E600AA500E598EE /* Config.xcconfig */,
 			);
+			name = ChatToolView;
 			path = test;
 			sourceTree = "<group>";
 		};
@@ -279,12 +327,25 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		D6F4BC811E824E850087384B /* FeedHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				D6F4BC821E824E950087384B /* FeedHeaderView.h */,
+				D6F4BC831E824E950087384B /* FeedHeaderView.m */,
+				D6F4BC8F1E8255530087384B /* FeedHeaderView.xib */,
+				D6F4BC881E824EE80087384B /* HeaderCollectionViewCell.h */,
+				D6F4BC891E824EE80087384B /* HeaderCollectionViewCell.m */,
+				D6F4BC8A1E824EE80087384B /* HeaderCollectionViewCell.xib */,
+			);
+			path = FeedHeaderView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D694F0291CDB5B1A00B5E05B /* test */ = {
+		D694F0291CDB5B1A00B5E05B /* ChatToolView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D694F0411CDB5B1B00B5E05B /* Build configuration list for PBXNativeTarget "test" */;
+			buildConfigurationList = D694F0411CDB5B1B00B5E05B /* Build configuration list for PBXNativeTarget "ChatToolView" */;
 			buildPhases = (
 				D694F0261CDB5B1A00B5E05B /* Sources */,
 				D694F0271CDB5B1A00B5E05B /* Frameworks */,
@@ -294,9 +355,9 @@
 			);
 			dependencies = (
 			);
-			name = test;
+			name = ChatToolView;
 			productName = test;
-			productReference = D694F02A1CDB5B1A00B5E05B /* test.app */;
+			productReference = D694F02A1CDB5B1A00B5E05B /* ChatToolView.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -311,11 +372,11 @@
 					D694F0291CDB5B1A00B5E05B = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = TN86QB8B5D;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = D694F0251CDB5B1A00B5E05B /* Build configuration list for PBXProject "test" */;
+			buildConfigurationList = D694F0251CDB5B1A00B5E05B /* Build configuration list for PBXProject "ChatToolView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -328,7 +389,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D694F0291CDB5B1A00B5E05B /* test */,
+				D694F0291CDB5B1A00B5E05B /* ChatToolView */,
 			);
 		};
 /* End PBXProject section */
@@ -339,9 +400,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6AB953F1E0D29BD0063842A /* CameraViewController.xib in Resources */,
+				D6F4BC901E8255530087384B /* FeedHeaderView.xib in Resources */,
 				D694F03D1CDB5B1B00B5E05B /* LaunchScreen.storyboard in Resources */,
 				D65467801E0BD0E2002CFFE2 /* ImagesChooseCell.xib in Resources */,
 				D694F03A1CDB5B1B00B5E05B /* Assets.xcassets in Resources */,
+				D647E6601E600AA500E598EE /* Config.xcconfig in Resources */,
+				D6F4BC8C1E824EE80087384B /* HeaderCollectionViewCell.xib in Resources */,
 				D6CFC4A31E124DAD007AEC67 /* ChatTool.bundle in Resources */,
 				D65466F81E0A9196002CFFE2 /* tupian_icon.pdf in Resources */,
 				D694F0381CDB5B1B00B5E05B /* Main.storyboard in Resources */,
@@ -356,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D65467791E0BD0E2002CFFE2 /* PHSourceManager.m in Sources */,
+				D6F4BC841E824E950087384B /* FeedHeaderView.m in Sources */,
 				D6CFC4921E12020E007AEC67 /* UIImage+CCTool.m in Sources */,
 				D694F0351CDB5B1B00B5E05B /* ViewController.m in Sources */,
 				D654677F1E0BD0E2002CFFE2 /* ImagesChooseCell.m in Sources */,
@@ -364,17 +429,23 @@
 				D6CFC4AB1E124EB8007AEC67 /* VoiceRecordManager.m in Sources */,
 				D694F0321CDB5B1B00B5E05B /* AppDelegate.m in Sources */,
 				D654677B1E0BD0E2002CFFE2 /* AlbumObj.m in Sources */,
+				D658013F1E77DA3B00360B1B /* SlideView.m in Sources */,
 				D694F02F1CDB5B1A00B5E05B /* main.m in Sources */,
 				D6CFC4B21E137FBE007AEC67 /* UIView+Extend.m in Sources */,
 				D654677E1E0BD0E2002CFFE2 /* MomentDataSource.m in Sources */,
 				D654677D1E0BD0E2002CFFE2 /* BaseDataSource.m in Sources */,
 				D65467771E0BD0E2002CFFE2 /* AssetSourceManager.m in Sources */,
+				D6BC75F31E1BAA0F00223416 /* ToolsView.m in Sources */,
 				D6AB953E1E0D29BD0063842A /* CameraViewController.m in Sources */,
+				D65801481E77DBC500360B1B /* SlideCALayer.m in Sources */,
 				D65467761E0BD0E2002CFFE2 /* ChatToolView.m in Sources */,
+				D6F4BC8B1E824EE80087384B /* HeaderCollectionViewCell.m in Sources */,
 				D65467781E0BD0E2002CFFE2 /* ImageDataAPI.m in Sources */,
 				D654677A1E0BD0E2002CFFE2 /* ALAsset+Date.m in Sources */,
+				D65801451E77DBB000360B1B /* SlideSubView.m in Sources */,
 				D6CFC4911E12020E007AEC67 /* CCCameraManger.m in Sources */,
 				D654677C1E0BD0E2002CFFE2 /* MomentCollection.m in Sources */,
+				D65801421E77DABD00360B1B /* UIView+Extend.m in Sources */,
 				D65467811E0BD0E2002CFFE2 /* ImagesFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,13 +565,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Xie Fabo (PXQFQ546UD)";
-				DEVELOPMENT_TEAM = TN86QB8B5D;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.youplus.youplus;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.youplus.youplussssss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1a50bd97-e2b6-4de0-a47a-64ba0be656ad";
-				PROVISIONING_PROFILE_SPECIFIER = youplus;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -509,20 +581,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Xie Fabo (PXQFQ546UD)";
-				DEVELOPMENT_TEAM = TN86QB8B5D;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.youplus.youplus;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.youplus.youplussssss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1a50bd97-e2b6-4de0-a47a-64ba0be656ad";
-				PROVISIONING_PROFILE_SPECIFIER = youplus;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D694F0251CDB5B1A00B5E05B /* Build configuration list for PBXProject "test" */ = {
+		D694F0251CDB5B1A00B5E05B /* Build configuration list for PBXProject "ChatToolView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D694F03F1CDB5B1B00B5E05B /* Debug */,
@@ -531,7 +604,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D694F0411CDB5B1B00B5E05B /* Build configuration list for PBXNativeTarget "test" */ = {
+		D694F0411CDB5B1B00B5E05B /* Build configuration list for PBXNativeTarget "ChatToolView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D694F0421CDB5B1B00B5E05B /* Debug */,
