@@ -2,7 +2,6 @@
 //  CCCameraManger.m
 //  CustomCamera
 //
-//  Created by zhouke on 16/8/31.
 //  Copyright © 2016年  All rights reserved.
 //
 
@@ -153,7 +152,7 @@
         CGFloat squareLength = weak.previewLayer.bounds.size.width;
         CGFloat previewLayerH = weak.previewLayer.bounds.size.height;
         CGSize size = CGSizeMake(squareLength * 2, previewLayerH * 2);
-        UIImage *scaledImage = [originImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:size interpolationQuality:kCGInterpolationHigh];
+        UIImage *scaledImage = [originImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:size interpolationQuality:kCGInterpolationHigh];
 
         CGRect cropFrame = CGRectMake((scaledImage.size.width - size.width) / 2, (scaledImage.size.height - size.height) / 2, size.width, size.height);
         UIImage *croppedImage = [scaledImage croppedImage:cropFrame];
@@ -318,7 +317,7 @@
         CGFloat squareLength = self.previewLayer.bounds.size.width;
         CGFloat previewLayerH = self.previewLayer.bounds.size.height;
         CGSize size = CGSizeMake(squareLength*2, previewLayerH*2);
-        UIImage *scaledImage = [originImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:size interpolationQuality:kCGInterpolationHigh];
+        UIImage *scaledImage = [originImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:size interpolationQuality:kCGInterpolationHigh];
         CGRect cropFrame = CGRectMake((scaledImage.size.width - size.width) / 2, (scaledImage.size.height - size.height) / 2, size.width, size.height);
         UIImage *croppedImage = [scaledImage croppedImage:cropFrame];
         UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;

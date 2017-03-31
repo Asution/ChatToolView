@@ -62,13 +62,13 @@
 }
 
 - (void)setContentInset:(UIEdgeInsets)contentInset {
-    [super setContentInset:contentInset];
-    [self setNeedsDisplay];
+    [super setContentInset:contentInset];    [self setNeedsDisplay];
 }
 
 - (void)setFont:(UIFont *)font {
     [super setFont:font];
     [self setNeedsDisplay];
+
 }
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
@@ -100,10 +100,11 @@
                                              selector:@selector(didReceiveTextDidBegineNotification:)
                                                  name:UITextViewTextDidBeginEditingNotification
                                                object:self];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveTextDidChangeNotification:)
                                                  name:UITextViewTextDidChangeNotification
-                                               object:self];
+                                               object:nil];
     
     _placeHolderTextColor = [UIColor lightGrayColor];
     self.scrollIndicatorInsets = UIEdgeInsetsMake(10.0f, 0, 10.0f, 8.0f);

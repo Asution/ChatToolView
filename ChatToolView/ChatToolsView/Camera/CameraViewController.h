@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^ToolsBtnClickBlock)(NSInteger type);
-
 typedef NS_ENUM(NSInteger, ToolsBtnClickType) {
     ToolsBtnClickReplace = 0,
     ToolsBtnClickCancle ,
     ToolsBtnClickSend
 };
 
+typedef void (^ToolsBtnClickBlock)(ToolsBtnClickType type, UIImage *image);
+
 
 @interface CameraViewController : UIViewController
 
-@property (nonatomic , copy) ToolsBtnClickBlock block;
+@property (nonatomic , copy) ToolsBtnClickBlock clickTypeBlock;
 
 @end

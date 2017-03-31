@@ -8,92 +8,125 @@
 
 /* Begin PBXBuildFile section */
 		6965A6C7B20206FB87D01677 /* libPods-ChatToolView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 092A8F21922535734ED9E9C6 /* libPods-ChatToolView.a */; };
-		D65CAD921E8E632D00212261 /* CCCameraManger.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD5B1E8E632D00212261 /* CCCameraManger.m */; };
-		D65CAD931E8E632D00212261 /* UIImage+CCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD5D1E8E632D00212261 /* UIImage+CCTool.m */; };
-		D65CAD941E8E632D00212261 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD5F1E8E632D00212261 /* CameraViewController.m */; };
-		D65CAD951E8E632D00212261 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65CAD601E8E632D00212261 /* CameraViewController.xib */; };
-		D65CAD961E8E632D00212261 /* ChatToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD631E8E632D00212261 /* ChatToolView.m */; };
-		D65CAD971E8E632D00212261 /* AssetSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD671E8E632D00212261 /* AssetSourceManager.m */; };
-		D65CAD981E8E632D00212261 /* ImageDataAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD691E8E632D00212261 /* ImageDataAPI.m */; };
-		D65CAD991E8E632D00212261 /* PHSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD6B1E8E632D00212261 /* PHSourceManager.m */; };
-		D65CAD9A1E8E632D00212261 /* ALAsset+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD6E1E8E632D00212261 /* ALAsset+Date.m */; };
-		D65CAD9B1E8E632D00212261 /* AlbumObj.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD701E8E632D00212261 /* AlbumObj.m */; };
-		D65CAD9C1E8E632D00212261 /* MomentCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD721E8E632D00212261 /* MomentCollection.m */; };
-		D65CAD9D1E8E632D00212261 /* BaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD751E8E632D00212261 /* BaseDataSource.m */; };
-		D65CAD9E1E8E632D00212261 /* MomentDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD771E8E632D00212261 /* MomentDataSource.m */; };
-		D65CAD9F1E8E632D00212261 /* ImagesChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD791E8E632D00212261 /* ImagesChooseCell.m */; };
-		D65CADA01E8E632D00212261 /* ImagesChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65CAD7A1E8E632D00212261 /* ImagesChooseCell.xib */; };
-		D65CADA11E8E632D00212261 /* ImagesFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD7C1E8E632D00212261 /* ImagesFlowLayout.m */; };
-		D65CADA21E8E632D00212261 /* ChatTool.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D65CAD7E1E8E632D00212261 /* ChatTool.bundle */; };
-		D65CADA31E8E632D00212261 /* UIImageView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD811E8E632D00212261 /* UIImageView+Extend.m */; };
-		D65CADA41E8E632D00212261 /* UIView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD831E8E632D00212261 /* UIView+Extend.m */; };
-		D65CADA51E8E632D00212261 /* ChatVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD871E8E632D00212261 /* ChatVoiceView.m */; };
-		D65CADA61E8E632D00212261 /* ChatVoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65CAD881E8E632D00212261 /* ChatVoiceView.xib */; };
-		D65CADA71E8E632D00212261 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD8A1E8E632D00212261 /* MessageTextView.m */; };
-		D65CADA81E8E632D00212261 /* SCSiriWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD8C1E8E632D00212261 /* SCSiriWaveformView.m */; };
-		D65CADA91E8E632D00212261 /* VoiceRecordHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD8E1E8E632D00212261 /* VoiceRecordHUD.m */; };
-		D65CADAA1E8E632D00212261 /* VoiceRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAD911E8E632D00212261 /* VoiceRecordManager.m */; };
-		D65CADB21E8E637D00212261 /* TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADAD1E8E637D00212261 /* TBCityIconFont.m */; };
-		D65CADB31E8E637D00212261 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADAF1E8E637D00212261 /* TBCityIconInfo.m */; };
-		D65CADB41E8E637D00212261 /* UIImage+TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADB11E8E637D00212261 /* UIImage+TBCityIconFont.m */; };
+		D65CAE171E8E66F300212261 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADB71E8E66F300212261 /* AppDelegate.m */; };
+		D65CAE181E8E66F300212261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65CADB81E8E66F300212261 /* Assets.xcassets */; };
+		D65CAE191E8E66F300212261 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65CADB91E8E66F300212261 /* LaunchScreen.storyboard */; };
+		D65CAE1A1E8E66F300212261 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65CADBB1E8E66F300212261 /* Main.storyboard */; };
+		D65CAE1B1E8E66F300212261 /* CCCameraManger.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADC11E8E66F300212261 /* CCCameraManger.m */; };
+		D65CAE1C1E8E66F300212261 /* UIImage+CCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADC31E8E66F300212261 /* UIImage+CCTool.m */; };
+		D65CAE1D1E8E66F300212261 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADC51E8E66F300212261 /* CameraViewController.m */; };
+		D65CAE1E1E8E66F300212261 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65CADC61E8E66F300212261 /* CameraViewController.xib */; };
+		D65CAE1F1E8E66F300212261 /* ChatToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADC91E8E66F300212261 /* ChatToolView.m */; };
+		D65CAE201E8E66F300212261 /* TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADCC1E8E66F300212261 /* TBCityIconFont.m */; };
+		D65CAE211E8E66F300212261 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADCE1E8E66F300212261 /* TBCityIconInfo.m */; };
+		D65CAE221E8E66F300212261 /* UIImage+TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADD01E8E66F300212261 /* UIImage+TBCityIconFont.m */; };
+		D65CAE231E8E66F300212261 /* AssetSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADD41E8E66F300212261 /* AssetSourceManager.m */; };
+		D65CAE241E8E66F300212261 /* ImageDataAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADD61E8E66F300212261 /* ImageDataAPI.m */; };
+		D65CAE251E8E66F300212261 /* PHSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADD81E8E66F300212261 /* PHSourceManager.m */; };
+		D65CAE261E8E66F300212261 /* ALAsset+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADDB1E8E66F300212261 /* ALAsset+Date.m */; };
+		D65CAE271E8E66F300212261 /* AlbumObj.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADDD1E8E66F300212261 /* AlbumObj.m */; };
+		D65CAE281E8E66F300212261 /* MomentCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADDF1E8E66F300212261 /* MomentCollection.m */; };
+		D65CAE291E8E66F300212261 /* BaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADE21E8E66F300212261 /* BaseDataSource.m */; };
+		D65CAE2A1E8E66F300212261 /* MomentDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADE41E8E66F300212261 /* MomentDataSource.m */; };
+		D65CAE2B1E8E66F300212261 /* ImagesChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADE61E8E66F300212261 /* ImagesChooseCell.m */; };
+		D65CAE2C1E8E66F300212261 /* ImagesChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65CADE71E8E66F300212261 /* ImagesChooseCell.xib */; };
+		D65CAE2D1E8E66F300212261 /* ImagesFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADE91E8E66F300212261 /* ImagesFlowLayout.m */; };
+		D65CAE2E1E8E66F300212261 /* ChatTool.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D65CADEB1E8E66F300212261 /* ChatTool.bundle */; };
+		D65CAE2F1E8E66F300212261 /* UIImageView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADEE1E8E66F300212261 /* UIImageView+Extend.m */; };
+		D65CAE301E8E66F300212261 /* UIView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADF01E8E66F300212261 /* UIView+Extend.m */; };
+		D65CAE311E8E66F300212261 /* ChatVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADF41E8E66F300212261 /* ChatVoiceView.m */; };
+		D65CAE321E8E66F300212261 /* ChatVoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65CADF51E8E66F300212261 /* ChatVoiceView.xib */; };
+		D65CAE331E8E66F300212261 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADF71E8E66F300212261 /* MessageTextView.m */; };
+		D65CAE341E8E66F300212261 /* SCSiriWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADF91E8E66F300212261 /* SCSiriWaveformView.m */; };
+		D65CAE351E8E66F300212261 /* VoiceRecordHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADFB1E8E66F300212261 /* VoiceRecordHUD.m */; };
+		D65CAE361E8E66F300212261 /* VoiceRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CADFE1E8E66F300212261 /* VoiceRecordManager.m */; };
+		D65CAE371E8E66F300212261 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D65CADFF1E8E66F300212261 /* Config.xcconfig */; };
+		D65CAE381E8E66F300212261 /* FeedHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAE021E8E66F300212261 /* FeedHeaderView.m */; };
+		D65CAE391E8E66F300212261 /* FeedHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65CAE031E8E66F300212261 /* FeedHeaderView.xib */; };
+		D65CAE3A1E8E66F300212261 /* HeaderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAE051E8E66F300212261 /* HeaderCollectionViewCell.m */; };
+		D65CAE3B1E8E66F300212261 /* HeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65CAE061E8E66F300212261 /* HeaderCollectionViewCell.xib */; };
+		D65CAE3C1E8E66F300212261 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D65CAE071E8E66F300212261 /* Info.plist */; };
+		D65CAE3D1E8E66F300212261 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAE081E8E66F300212261 /* main.m */; };
+		D65CAE421E8E66F300212261 /* ToolsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAE131E8E66F300212261 /* ToolsView.m */; };
+		D65CAE431E8E66F300212261 /* tupian_icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D65CAE141E8E66F300212261 /* tupian_icon.pdf */; };
+		D65CAE441E8E66F300212261 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65CAE161E8E66F300212261 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		092A8F21922535734ED9E9C6 /* libPods-ChatToolView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChatToolView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA3C0B516BFCC326E2E02AD /* Pods-ChatToolView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatToolView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatToolView/Pods-ChatToolView.debug.xcconfig"; sourceTree = "<group>"; };
-		D65CAD5A1E8E632D00212261 /* CCCameraManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCameraManger.h; sourceTree = "<group>"; };
-		D65CAD5B1E8E632D00212261 /* CCCameraManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCameraManger.m; sourceTree = "<group>"; };
-		D65CAD5C1E8E632D00212261 /* UIImage+CCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CCTool.h"; sourceTree = "<group>"; };
-		D65CAD5D1E8E632D00212261 /* UIImage+CCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CCTool.m"; sourceTree = "<group>"; };
-		D65CAD5E1E8E632D00212261 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		D65CAD5F1E8E632D00212261 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
-		D65CAD601E8E632D00212261 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
-		D65CAD611E8E632D00212261 /* ChatToolMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatToolMacro.h; sourceTree = "<group>"; };
-		D65CAD621E8E632D00212261 /* ChatToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatToolView.h; sourceTree = "<group>"; };
-		D65CAD631E8E632D00212261 /* ChatToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatToolView.m; sourceTree = "<group>"; };
-		D65CAD661E8E632D00212261 /* AssetSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSourceManager.h; sourceTree = "<group>"; };
-		D65CAD671E8E632D00212261 /* AssetSourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSourceManager.m; sourceTree = "<group>"; };
-		D65CAD681E8E632D00212261 /* ImageDataAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDataAPI.h; sourceTree = "<group>"; };
-		D65CAD691E8E632D00212261 /* ImageDataAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDataAPI.m; sourceTree = "<group>"; };
-		D65CAD6A1E8E632D00212261 /* PHSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHSourceManager.h; sourceTree = "<group>"; };
-		D65CAD6B1E8E632D00212261 /* PHSourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSourceManager.m; sourceTree = "<group>"; };
-		D65CAD6D1E8E632D00212261 /* ALAsset+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAsset+Date.h"; sourceTree = "<group>"; };
-		D65CAD6E1E8E632D00212261 /* ALAsset+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAsset+Date.m"; sourceTree = "<group>"; };
-		D65CAD6F1E8E632D00212261 /* AlbumObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumObj.h; sourceTree = "<group>"; };
-		D65CAD701E8E632D00212261 /* AlbumObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumObj.m; sourceTree = "<group>"; };
-		D65CAD711E8E632D00212261 /* MomentCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentCollection.h; sourceTree = "<group>"; };
-		D65CAD721E8E632D00212261 /* MomentCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentCollection.m; sourceTree = "<group>"; };
-		D65CAD741E8E632D00212261 /* BaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDataSource.h; sourceTree = "<group>"; };
-		D65CAD751E8E632D00212261 /* BaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDataSource.m; sourceTree = "<group>"; };
-		D65CAD761E8E632D00212261 /* MomentDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentDataSource.h; sourceTree = "<group>"; };
-		D65CAD771E8E632D00212261 /* MomentDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentDataSource.m; sourceTree = "<group>"; };
-		D65CAD781E8E632D00212261 /* ImagesChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesChooseCell.h; sourceTree = "<group>"; };
-		D65CAD791E8E632D00212261 /* ImagesChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesChooseCell.m; sourceTree = "<group>"; };
-		D65CAD7A1E8E632D00212261 /* ImagesChooseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagesChooseCell.xib; sourceTree = "<group>"; };
-		D65CAD7B1E8E632D00212261 /* ImagesFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesFlowLayout.h; sourceTree = "<group>"; };
-		D65CAD7C1E8E632D00212261 /* ImagesFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesFlowLayout.m; sourceTree = "<group>"; };
-		D65CAD7E1E8E632D00212261 /* ChatTool.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChatTool.bundle; sourceTree = "<group>"; };
-		D65CAD801E8E632D00212261 /* UIImageView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extend.h"; sourceTree = "<group>"; };
-		D65CAD811E8E632D00212261 /* UIImageView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Extend.m"; sourceTree = "<group>"; };
-		D65CAD821E8E632D00212261 /* UIView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extend.h"; sourceTree = "<group>"; };
-		D65CAD831E8E632D00212261 /* UIView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extend.m"; sourceTree = "<group>"; };
-		D65CAD861E8E632D00212261 /* ChatVoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatVoiceView.h; sourceTree = "<group>"; };
-		D65CAD871E8E632D00212261 /* ChatVoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatVoiceView.m; sourceTree = "<group>"; };
-		D65CAD881E8E632D00212261 /* ChatVoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatVoiceView.xib; sourceTree = "<group>"; };
-		D65CAD891E8E632D00212261 /* MessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTextView.h; sourceTree = "<group>"; };
-		D65CAD8A1E8E632D00212261 /* MessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTextView.m; sourceTree = "<group>"; };
-		D65CAD8B1E8E632D00212261 /* SCSiriWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSiriWaveformView.h; sourceTree = "<group>"; };
-		D65CAD8C1E8E632D00212261 /* SCSiriWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSiriWaveformView.m; sourceTree = "<group>"; };
-		D65CAD8D1E8E632D00212261 /* VoiceRecordHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecordHUD.h; sourceTree = "<group>"; };
-		D65CAD8E1E8E632D00212261 /* VoiceRecordHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecordHUD.m; sourceTree = "<group>"; };
-		D65CAD901E8E632D00212261 /* VoiceRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecordManager.h; sourceTree = "<group>"; };
-		D65CAD911E8E632D00212261 /* VoiceRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecordManager.m; sourceTree = "<group>"; };
-		D65CADAC1E8E637D00212261 /* TBCityIconFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCityIconFont.h; sourceTree = "<group>"; };
-		D65CADAD1E8E637D00212261 /* TBCityIconFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCityIconFont.m; sourceTree = "<group>"; };
-		D65CADAE1E8E637D00212261 /* TBCityIconInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCityIconInfo.h; sourceTree = "<group>"; };
-		D65CADAF1E8E637D00212261 /* TBCityIconInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCityIconInfo.m; sourceTree = "<group>"; };
-		D65CADB01E8E637D00212261 /* UIImage+TBCityIconFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TBCityIconFont.h"; sourceTree = "<group>"; };
-		D65CADB11E8E637D00212261 /* UIImage+TBCityIconFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TBCityIconFont.m"; sourceTree = "<group>"; };
+		D65CADB61E8E66F300212261 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D65CADB71E8E66F300212261 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D65CADB81E8E66F300212261 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D65CADBA1E8E66F300212261 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D65CADBC1E8E66F300212261 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D65CADC01E8E66F300212261 /* CCCameraManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCameraManger.h; sourceTree = "<group>"; };
+		D65CADC11E8E66F300212261 /* CCCameraManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCameraManger.m; sourceTree = "<group>"; };
+		D65CADC21E8E66F300212261 /* UIImage+CCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CCTool.h"; sourceTree = "<group>"; };
+		D65CADC31E8E66F300212261 /* UIImage+CCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CCTool.m"; sourceTree = "<group>"; };
+		D65CADC41E8E66F300212261 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		D65CADC51E8E66F300212261 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		D65CADC61E8E66F300212261 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		D65CADC71E8E66F300212261 /* ChatToolMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatToolMacro.h; sourceTree = "<group>"; };
+		D65CADC81E8E66F300212261 /* ChatToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatToolView.h; sourceTree = "<group>"; };
+		D65CADC91E8E66F300212261 /* ChatToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatToolView.m; sourceTree = "<group>"; };
+		D65CADCB1E8E66F300212261 /* TBCityIconFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCityIconFont.h; sourceTree = "<group>"; };
+		D65CADCC1E8E66F300212261 /* TBCityIconFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCityIconFont.m; sourceTree = "<group>"; };
+		D65CADCD1E8E66F300212261 /* TBCityIconInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCityIconInfo.h; sourceTree = "<group>"; };
+		D65CADCE1E8E66F300212261 /* TBCityIconInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCityIconInfo.m; sourceTree = "<group>"; };
+		D65CADCF1E8E66F300212261 /* UIImage+TBCityIconFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TBCityIconFont.h"; sourceTree = "<group>"; };
+		D65CADD01E8E66F300212261 /* UIImage+TBCityIconFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TBCityIconFont.m"; sourceTree = "<group>"; };
+		D65CADD31E8E66F300212261 /* AssetSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetSourceManager.h; sourceTree = "<group>"; };
+		D65CADD41E8E66F300212261 /* AssetSourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetSourceManager.m; sourceTree = "<group>"; };
+		D65CADD51E8E66F300212261 /* ImageDataAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDataAPI.h; sourceTree = "<group>"; };
+		D65CADD61E8E66F300212261 /* ImageDataAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDataAPI.m; sourceTree = "<group>"; };
+		D65CADD71E8E66F300212261 /* PHSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHSourceManager.h; sourceTree = "<group>"; };
+		D65CADD81E8E66F300212261 /* PHSourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHSourceManager.m; sourceTree = "<group>"; };
+		D65CADDA1E8E66F300212261 /* ALAsset+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAsset+Date.h"; sourceTree = "<group>"; };
+		D65CADDB1E8E66F300212261 /* ALAsset+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAsset+Date.m"; sourceTree = "<group>"; };
+		D65CADDC1E8E66F300212261 /* AlbumObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumObj.h; sourceTree = "<group>"; };
+		D65CADDD1E8E66F300212261 /* AlbumObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumObj.m; sourceTree = "<group>"; };
+		D65CADDE1E8E66F300212261 /* MomentCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentCollection.h; sourceTree = "<group>"; };
+		D65CADDF1E8E66F300212261 /* MomentCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentCollection.m; sourceTree = "<group>"; };
+		D65CADE11E8E66F300212261 /* BaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDataSource.h; sourceTree = "<group>"; };
+		D65CADE21E8E66F300212261 /* BaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDataSource.m; sourceTree = "<group>"; };
+		D65CADE31E8E66F300212261 /* MomentDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentDataSource.h; sourceTree = "<group>"; };
+		D65CADE41E8E66F300212261 /* MomentDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentDataSource.m; sourceTree = "<group>"; };
+		D65CADE51E8E66F300212261 /* ImagesChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesChooseCell.h; sourceTree = "<group>"; };
+		D65CADE61E8E66F300212261 /* ImagesChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesChooseCell.m; sourceTree = "<group>"; };
+		D65CADE71E8E66F300212261 /* ImagesChooseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagesChooseCell.xib; sourceTree = "<group>"; };
+		D65CADE81E8E66F300212261 /* ImagesFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesFlowLayout.h; sourceTree = "<group>"; };
+		D65CADE91E8E66F300212261 /* ImagesFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesFlowLayout.m; sourceTree = "<group>"; };
+		D65CADEB1E8E66F300212261 /* ChatTool.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChatTool.bundle; sourceTree = "<group>"; };
+		D65CADED1E8E66F300212261 /* UIImageView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extend.h"; sourceTree = "<group>"; };
+		D65CADEE1E8E66F300212261 /* UIImageView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Extend.m"; sourceTree = "<group>"; };
+		D65CADEF1E8E66F300212261 /* UIView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extend.h"; sourceTree = "<group>"; };
+		D65CADF01E8E66F300212261 /* UIView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extend.m"; sourceTree = "<group>"; };
+		D65CADF31E8E66F300212261 /* ChatVoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatVoiceView.h; sourceTree = "<group>"; };
+		D65CADF41E8E66F300212261 /* ChatVoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatVoiceView.m; sourceTree = "<group>"; };
+		D65CADF51E8E66F300212261 /* ChatVoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatVoiceView.xib; sourceTree = "<group>"; };
+		D65CADF61E8E66F300212261 /* MessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTextView.h; sourceTree = "<group>"; };
+		D65CADF71E8E66F300212261 /* MessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTextView.m; sourceTree = "<group>"; };
+		D65CADF81E8E66F300212261 /* SCSiriWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSiriWaveformView.h; sourceTree = "<group>"; };
+		D65CADF91E8E66F300212261 /* SCSiriWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSiriWaveformView.m; sourceTree = "<group>"; };
+		D65CADFA1E8E66F300212261 /* VoiceRecordHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecordHUD.h; sourceTree = "<group>"; };
+		D65CADFB1E8E66F300212261 /* VoiceRecordHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecordHUD.m; sourceTree = "<group>"; };
+		D65CADFD1E8E66F300212261 /* VoiceRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecordManager.h; sourceTree = "<group>"; };
+		D65CADFE1E8E66F300212261 /* VoiceRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecordManager.m; sourceTree = "<group>"; };
+		D65CADFF1E8E66F300212261 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		D65CAE011E8E66F300212261 /* FeedHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedHeaderView.h; sourceTree = "<group>"; };
+		D65CAE021E8E66F300212261 /* FeedHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedHeaderView.m; sourceTree = "<group>"; };
+		D65CAE031E8E66F300212261 /* FeedHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedHeaderView.xib; sourceTree = "<group>"; };
+		D65CAE041E8E66F300212261 /* HeaderCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCollectionViewCell.h; sourceTree = "<group>"; };
+		D65CAE051E8E66F300212261 /* HeaderCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCollectionViewCell.m; sourceTree = "<group>"; };
+		D65CAE061E8E66F300212261 /* HeaderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderCollectionViewCell.xib; sourceTree = "<group>"; };
+		D65CAE071E8E66F300212261 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D65CAE081E8E66F300212261 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D65CAE121E8E66F300212261 /* ToolsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsView.h; sourceTree = "<group>"; };
+		D65CAE131E8E66F300212261 /* ToolsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsView.m; sourceTree = "<group>"; };
+		D65CAE141E8E66F300212261 /* tupian_icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = tupian_icon.pdf; sourceTree = "<group>"; };
+		D65CAE151E8E66F300212261 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D65CAE161E8E66F300212261 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D694F02A1CDB5B1A00B5E05B /* ChatToolView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatToolView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7AA9F6FF74FBBF4857C207 /* Pods-ChatToolView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatToolView.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatToolView/Pods-ChatToolView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,166 +160,201 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D65CAD571E8E632D00212261 /* ChatToolsView */ = {
+		D65CADB51E8E66F300212261 /* ChatToolView */ = {
 			isa = PBXGroup;
 			children = (
-				D65CADAB1E8E637D00212261 /* IconFont */,
-				D65CAD581E8E632D00212261 /* Camera */,
-				D65CAD611E8E632D00212261 /* ChatToolMacro.h */,
-				D65CAD621E8E632D00212261 /* ChatToolView.h */,
-				D65CAD631E8E632D00212261 /* ChatToolView.m */,
-				D65CAD641E8E632D00212261 /* ImagesChoose */,
-				D65CAD7D1E8E632D00212261 /* Resources */,
-				D65CAD7F1E8E632D00212261 /* Tools */,
-				D65CAD841E8E632D00212261 /* Voice */,
+				D65CADB61E8E66F300212261 /* AppDelegate.h */,
+				D65CADB71E8E66F300212261 /* AppDelegate.m */,
+				D65CADB81E8E66F300212261 /* Assets.xcassets */,
+				D65CADB91E8E66F300212261 /* LaunchScreen.storyboard */,
+				D65CADBB1E8E66F300212261 /* Main.storyboard */,
+				D65CADBD1E8E66F300212261 /* ChatToolsView */,
+				D65CADFF1E8E66F300212261 /* Config.xcconfig */,
+				D65CAE001E8E66F300212261 /* FeedHeaderView */,
+				D65CAE071E8E66F300212261 /* Info.plist */,
+				D65CAE081E8E66F300212261 /* main.m */,
+				D65CAE121E8E66F300212261 /* ToolsView.h */,
+				D65CAE131E8E66F300212261 /* ToolsView.m */,
+				D65CAE141E8E66F300212261 /* tupian_icon.pdf */,
+				D65CAE151E8E66F300212261 /* ViewController.h */,
+				D65CAE161E8E66F300212261 /* ViewController.m */,
+			);
+			path = ChatToolView;
+			sourceTree = "<group>";
+		};
+		D65CADBD1E8E66F300212261 /* ChatToolsView */ = {
+			isa = PBXGroup;
+			children = (
+				D65CADBE1E8E66F300212261 /* Camera */,
+				D65CADC71E8E66F300212261 /* ChatToolMacro.h */,
+				D65CADC81E8E66F300212261 /* ChatToolView.h */,
+				D65CADC91E8E66F300212261 /* ChatToolView.m */,
+				D65CADCA1E8E66F300212261 /* IconFont */,
+				D65CADD11E8E66F300212261 /* ImagesChoose */,
+				D65CADEA1E8E66F300212261 /* Resources */,
+				D65CADEC1E8E66F300212261 /* Tools */,
+				D65CADF11E8E66F300212261 /* Voice */,
 			);
 			path = ChatToolsView;
 			sourceTree = "<group>";
 		};
-		D65CAD581E8E632D00212261 /* Camera */ = {
+		D65CADBE1E8E66F300212261 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD591E8E632D00212261 /* CameraManger */,
-				D65CAD5E1E8E632D00212261 /* CameraViewController.h */,
-				D65CAD5F1E8E632D00212261 /* CameraViewController.m */,
-				D65CAD601E8E632D00212261 /* CameraViewController.xib */,
+				D65CADBF1E8E66F300212261 /* CameraManger */,
+				D65CADC41E8E66F300212261 /* CameraViewController.h */,
+				D65CADC51E8E66F300212261 /* CameraViewController.m */,
+				D65CADC61E8E66F300212261 /* CameraViewController.xib */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		D65CAD591E8E632D00212261 /* CameraManger */ = {
+		D65CADBF1E8E66F300212261 /* CameraManger */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD5A1E8E632D00212261 /* CCCameraManger.h */,
-				D65CAD5B1E8E632D00212261 /* CCCameraManger.m */,
-				D65CAD5C1E8E632D00212261 /* UIImage+CCTool.h */,
-				D65CAD5D1E8E632D00212261 /* UIImage+CCTool.m */,
+				D65CADC01E8E66F300212261 /* CCCameraManger.h */,
+				D65CADC11E8E66F300212261 /* CCCameraManger.m */,
+				D65CADC21E8E66F300212261 /* UIImage+CCTool.h */,
+				D65CADC31E8E66F300212261 /* UIImage+CCTool.m */,
 			);
 			path = CameraManger;
 			sourceTree = "<group>";
 		};
-		D65CAD641E8E632D00212261 /* ImagesChoose */ = {
+		D65CADCA1E8E66F300212261 /* IconFont */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD651E8E632D00212261 /* DataManager */,
-				D65CAD6C1E8E632D00212261 /* DataModel */,
-				D65CAD731E8E632D00212261 /* DataSource */,
-				D65CAD781E8E632D00212261 /* ImagesChooseCell.h */,
-				D65CAD791E8E632D00212261 /* ImagesChooseCell.m */,
-				D65CAD7A1E8E632D00212261 /* ImagesChooseCell.xib */,
-				D65CAD7B1E8E632D00212261 /* ImagesFlowLayout.h */,
-				D65CAD7C1E8E632D00212261 /* ImagesFlowLayout.m */,
+				D65CADCB1E8E66F300212261 /* TBCityIconFont.h */,
+				D65CADCC1E8E66F300212261 /* TBCityIconFont.m */,
+				D65CADCD1E8E66F300212261 /* TBCityIconInfo.h */,
+				D65CADCE1E8E66F300212261 /* TBCityIconInfo.m */,
+				D65CADCF1E8E66F300212261 /* UIImage+TBCityIconFont.h */,
+				D65CADD01E8E66F300212261 /* UIImage+TBCityIconFont.m */,
+			);
+			path = IconFont;
+			sourceTree = "<group>";
+		};
+		D65CADD11E8E66F300212261 /* ImagesChoose */ = {
+			isa = PBXGroup;
+			children = (
+				D65CADD21E8E66F300212261 /* DataManager */,
+				D65CADD91E8E66F300212261 /* DataModel */,
+				D65CADE01E8E66F300212261 /* DataSource */,
+				D65CADE51E8E66F300212261 /* ImagesChooseCell.h */,
+				D65CADE61E8E66F300212261 /* ImagesChooseCell.m */,
+				D65CADE71E8E66F300212261 /* ImagesChooseCell.xib */,
+				D65CADE81E8E66F300212261 /* ImagesFlowLayout.h */,
+				D65CADE91E8E66F300212261 /* ImagesFlowLayout.m */,
 			);
 			path = ImagesChoose;
 			sourceTree = "<group>";
 		};
-		D65CAD651E8E632D00212261 /* DataManager */ = {
+		D65CADD21E8E66F300212261 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD661E8E632D00212261 /* AssetSourceManager.h */,
-				D65CAD671E8E632D00212261 /* AssetSourceManager.m */,
-				D65CAD681E8E632D00212261 /* ImageDataAPI.h */,
-				D65CAD691E8E632D00212261 /* ImageDataAPI.m */,
-				D65CAD6A1E8E632D00212261 /* PHSourceManager.h */,
-				D65CAD6B1E8E632D00212261 /* PHSourceManager.m */,
+				D65CADD31E8E66F300212261 /* AssetSourceManager.h */,
+				D65CADD41E8E66F300212261 /* AssetSourceManager.m */,
+				D65CADD51E8E66F300212261 /* ImageDataAPI.h */,
+				D65CADD61E8E66F300212261 /* ImageDataAPI.m */,
+				D65CADD71E8E66F300212261 /* PHSourceManager.h */,
+				D65CADD81E8E66F300212261 /* PHSourceManager.m */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
 		};
-		D65CAD6C1E8E632D00212261 /* DataModel */ = {
+		D65CADD91E8E66F300212261 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD6D1E8E632D00212261 /* ALAsset+Date.h */,
-				D65CAD6E1E8E632D00212261 /* ALAsset+Date.m */,
-				D65CAD6F1E8E632D00212261 /* AlbumObj.h */,
-				D65CAD701E8E632D00212261 /* AlbumObj.m */,
-				D65CAD711E8E632D00212261 /* MomentCollection.h */,
-				D65CAD721E8E632D00212261 /* MomentCollection.m */,
+				D65CADDA1E8E66F300212261 /* ALAsset+Date.h */,
+				D65CADDB1E8E66F300212261 /* ALAsset+Date.m */,
+				D65CADDC1E8E66F300212261 /* AlbumObj.h */,
+				D65CADDD1E8E66F300212261 /* AlbumObj.m */,
+				D65CADDE1E8E66F300212261 /* MomentCollection.h */,
+				D65CADDF1E8E66F300212261 /* MomentCollection.m */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
 		};
-		D65CAD731E8E632D00212261 /* DataSource */ = {
+		D65CADE01E8E66F300212261 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD741E8E632D00212261 /* BaseDataSource.h */,
-				D65CAD751E8E632D00212261 /* BaseDataSource.m */,
-				D65CAD761E8E632D00212261 /* MomentDataSource.h */,
-				D65CAD771E8E632D00212261 /* MomentDataSource.m */,
+				D65CADE11E8E66F300212261 /* BaseDataSource.h */,
+				D65CADE21E8E66F300212261 /* BaseDataSource.m */,
+				D65CADE31E8E66F300212261 /* MomentDataSource.h */,
+				D65CADE41E8E66F300212261 /* MomentDataSource.m */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
 		};
-		D65CAD7D1E8E632D00212261 /* Resources */ = {
+		D65CADEA1E8E66F300212261 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD7E1E8E632D00212261 /* ChatTool.bundle */,
+				D65CADEB1E8E66F300212261 /* ChatTool.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		D65CAD7F1E8E632D00212261 /* Tools */ = {
+		D65CADEC1E8E66F300212261 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD801E8E632D00212261 /* UIImageView+Extend.h */,
-				D65CAD811E8E632D00212261 /* UIImageView+Extend.m */,
-				D65CAD821E8E632D00212261 /* UIView+Extend.h */,
-				D65CAD831E8E632D00212261 /* UIView+Extend.m */,
+				D65CADED1E8E66F300212261 /* UIImageView+Extend.h */,
+				D65CADEE1E8E66F300212261 /* UIImageView+Extend.m */,
+				D65CADEF1E8E66F300212261 /* UIView+Extend.h */,
+				D65CADF01E8E66F300212261 /* UIView+Extend.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		D65CAD841E8E632D00212261 /* Voice */ = {
+		D65CADF11E8E66F300212261 /* Voice */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD851E8E632D00212261 /* InputView */,
-				D65CAD8F1E8E632D00212261 /* Manager */,
+				D65CADF21E8E66F300212261 /* InputView */,
+				D65CADFC1E8E66F300212261 /* Manager */,
 			);
 			path = Voice;
 			sourceTree = "<group>";
 		};
-		D65CAD851E8E632D00212261 /* InputView */ = {
+		D65CADF21E8E66F300212261 /* InputView */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD861E8E632D00212261 /* ChatVoiceView.h */,
-				D65CAD871E8E632D00212261 /* ChatVoiceView.m */,
-				D65CAD881E8E632D00212261 /* ChatVoiceView.xib */,
-				D65CAD891E8E632D00212261 /* MessageTextView.h */,
-				D65CAD8A1E8E632D00212261 /* MessageTextView.m */,
-				D65CAD8B1E8E632D00212261 /* SCSiriWaveformView.h */,
-				D65CAD8C1E8E632D00212261 /* SCSiriWaveformView.m */,
-				D65CAD8D1E8E632D00212261 /* VoiceRecordHUD.h */,
-				D65CAD8E1E8E632D00212261 /* VoiceRecordHUD.m */,
+				D65CADF31E8E66F300212261 /* ChatVoiceView.h */,
+				D65CADF41E8E66F300212261 /* ChatVoiceView.m */,
+				D65CADF51E8E66F300212261 /* ChatVoiceView.xib */,
+				D65CADF61E8E66F300212261 /* MessageTextView.h */,
+				D65CADF71E8E66F300212261 /* MessageTextView.m */,
+				D65CADF81E8E66F300212261 /* SCSiriWaveformView.h */,
+				D65CADF91E8E66F300212261 /* SCSiriWaveformView.m */,
+				D65CADFA1E8E66F300212261 /* VoiceRecordHUD.h */,
+				D65CADFB1E8E66F300212261 /* VoiceRecordHUD.m */,
 			);
 			path = InputView;
 			sourceTree = "<group>";
 		};
-		D65CAD8F1E8E632D00212261 /* Manager */ = {
+		D65CADFC1E8E66F300212261 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				D65CAD901E8E632D00212261 /* VoiceRecordManager.h */,
-				D65CAD911E8E632D00212261 /* VoiceRecordManager.m */,
+				D65CADFD1E8E66F300212261 /* VoiceRecordManager.h */,
+				D65CADFE1E8E66F300212261 /* VoiceRecordManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		D65CADAB1E8E637D00212261 /* IconFont */ = {
+		D65CAE001E8E66F300212261 /* FeedHeaderView */ = {
 			isa = PBXGroup;
 			children = (
-				D65CADAC1E8E637D00212261 /* TBCityIconFont.h */,
-				D65CADAD1E8E637D00212261 /* TBCityIconFont.m */,
-				D65CADAE1E8E637D00212261 /* TBCityIconInfo.h */,
-				D65CADAF1E8E637D00212261 /* TBCityIconInfo.m */,
-				D65CADB01E8E637D00212261 /* UIImage+TBCityIconFont.h */,
-				D65CADB11E8E637D00212261 /* UIImage+TBCityIconFont.m */,
+				D65CAE011E8E66F300212261 /* FeedHeaderView.h */,
+				D65CAE021E8E66F300212261 /* FeedHeaderView.m */,
+				D65CAE031E8E66F300212261 /* FeedHeaderView.xib */,
+				D65CAE041E8E66F300212261 /* HeaderCollectionViewCell.h */,
+				D65CAE051E8E66F300212261 /* HeaderCollectionViewCell.m */,
+				D65CAE061E8E66F300212261 /* HeaderCollectionViewCell.xib */,
 			);
-			path = IconFont;
+			path = FeedHeaderView;
 			sourceTree = "<group>";
 		};
 		D694F0211CDB5B1A00B5E05B = {
 			isa = PBXGroup;
 			children = (
-				D65CAD571E8E632D00212261 /* ChatToolsView */,
+				D65CADB51E8E66F300212261 /* ChatToolView */,
 				D694F02B1CDB5B1A00B5E05B /* Products */,
 				A34015CE9F5C7861CCCC13A5 /* Pods */,
 				A746587EFE5259E238274C98 /* Frameworks */,
@@ -363,10 +431,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D65CADA01E8E632D00212261 /* ImagesChooseCell.xib in Resources */,
-				D65CADA21E8E632D00212261 /* ChatTool.bundle in Resources */,
-				D65CAD951E8E632D00212261 /* CameraViewController.xib in Resources */,
-				D65CADA61E8E632D00212261 /* ChatVoiceView.xib in Resources */,
+				D65CAE1A1E8E66F300212261 /* Main.storyboard in Resources */,
+				D65CAE2E1E8E66F300212261 /* ChatTool.bundle in Resources */,
+				D65CAE2C1E8E66F300212261 /* ImagesChooseCell.xib in Resources */,
+				D65CAE3B1E8E66F300212261 /* HeaderCollectionViewCell.xib in Resources */,
+				D65CAE431E8E66F300212261 /* tupian_icon.pdf in Resources */,
+				D65CAE1E1E8E66F300212261 /* CameraViewController.xib in Resources */,
+				D65CAE371E8E66F300212261 /* Config.xcconfig in Resources */,
+				D65CAE181E8E66F300212261 /* Assets.xcassets in Resources */,
+				D65CAE191E8E66F300212261 /* LaunchScreen.storyboard in Resources */,
+				D65CAE3C1E8E66F300212261 /* Info.plist in Resources */,
+				D65CAE321E8E66F300212261 /* ChatVoiceView.xib in Resources */,
+				D65CAE391E8E66F300212261 /* FeedHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,34 +501,59 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D65CAD9E1E8E632D00212261 /* MomentDataSource.m in Sources */,
-				D65CAD991E8E632D00212261 /* PHSourceManager.m in Sources */,
-				D65CAD9C1E8E632D00212261 /* MomentCollection.m in Sources */,
-				D65CAD981E8E632D00212261 /* ImageDataAPI.m in Sources */,
-				D65CAD9D1E8E632D00212261 /* BaseDataSource.m in Sources */,
-				D65CADA11E8E632D00212261 /* ImagesFlowLayout.m in Sources */,
-				D65CADA41E8E632D00212261 /* UIView+Extend.m in Sources */,
-				D65CADA81E8E632D00212261 /* SCSiriWaveformView.m in Sources */,
-				D65CAD941E8E632D00212261 /* CameraViewController.m in Sources */,
-				D65CAD921E8E632D00212261 /* CCCameraManger.m in Sources */,
-				D65CADAA1E8E632D00212261 /* VoiceRecordManager.m in Sources */,
-				D65CAD961E8E632D00212261 /* ChatToolView.m in Sources */,
-				D65CAD971E8E632D00212261 /* AssetSourceManager.m in Sources */,
-				D65CAD931E8E632D00212261 /* UIImage+CCTool.m in Sources */,
-				D65CAD9B1E8E632D00212261 /* AlbumObj.m in Sources */,
-				D65CAD9A1E8E632D00212261 /* ALAsset+Date.m in Sources */,
-				D65CADB31E8E637D00212261 /* TBCityIconInfo.m in Sources */,
-				D65CADB21E8E637D00212261 /* TBCityIconFont.m in Sources */,
-				D65CADA31E8E632D00212261 /* UIImageView+Extend.m in Sources */,
-				D65CADA51E8E632D00212261 /* ChatVoiceView.m in Sources */,
-				D65CADA91E8E632D00212261 /* VoiceRecordHUD.m in Sources */,
-				D65CAD9F1E8E632D00212261 /* ImagesChooseCell.m in Sources */,
-				D65CADB41E8E637D00212261 /* UIImage+TBCityIconFont.m in Sources */,
-				D65CADA71E8E632D00212261 /* MessageTextView.m in Sources */,
+				D65CAE441E8E66F300212261 /* ViewController.m in Sources */,
+				D65CAE1B1E8E66F300212261 /* CCCameraManger.m in Sources */,
+				D65CAE251E8E66F300212261 /* PHSourceManager.m in Sources */,
+				D65CAE1D1E8E66F300212261 /* CameraViewController.m in Sources */,
+				D65CAE421E8E66F300212261 /* ToolsView.m in Sources */,
+				D65CAE201E8E66F300212261 /* TBCityIconFont.m in Sources */,
+				D65CAE271E8E66F300212261 /* AlbumObj.m in Sources */,
+				D65CAE231E8E66F300212261 /* AssetSourceManager.m in Sources */,
+				D65CAE211E8E66F300212261 /* TBCityIconInfo.m in Sources */,
+				D65CAE281E8E66F300212261 /* MomentCollection.m in Sources */,
+				D65CAE2B1E8E66F300212261 /* ImagesChooseCell.m in Sources */,
+				D65CAE351E8E66F300212261 /* VoiceRecordHUD.m in Sources */,
+				D65CAE2A1E8E66F300212261 /* MomentDataSource.m in Sources */,
+				D65CAE1C1E8E66F300212261 /* UIImage+CCTool.m in Sources */,
+				D65CAE261E8E66F300212261 /* ALAsset+Date.m in Sources */,
+				D65CAE341E8E66F300212261 /* SCSiriWaveformView.m in Sources */,
+				D65CAE3A1E8E66F300212261 /* HeaderCollectionViewCell.m in Sources */,
+				D65CAE241E8E66F300212261 /* ImageDataAPI.m in Sources */,
+				D65CAE1F1E8E66F300212261 /* ChatToolView.m in Sources */,
+				D65CAE221E8E66F300212261 /* UIImage+TBCityIconFont.m in Sources */,
+				D65CAE171E8E66F300212261 /* AppDelegate.m in Sources */,
+				D65CAE311E8E66F300212261 /* ChatVoiceView.m in Sources */,
+				D65CAE381E8E66F300212261 /* FeedHeaderView.m in Sources */,
+				D65CAE331E8E66F300212261 /* MessageTextView.m in Sources */,
+				D65CAE291E8E66F300212261 /* BaseDataSource.m in Sources */,
+				D65CAE2F1E8E66F300212261 /* UIImageView+Extend.m in Sources */,
+				D65CAE361E8E66F300212261 /* VoiceRecordManager.m in Sources */,
+				D65CAE301E8E66F300212261 /* UIView+Extend.m in Sources */,
+				D65CAE3D1E8E66F300212261 /* main.m in Sources */,
+				D65CAE2D1E8E66F300212261 /* ImagesFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D65CADB91E8E66F300212261 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D65CADBA1E8E66F300212261 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D65CADBB1E8E66F300212261 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D65CADBC1E8E66F300212261 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D694F03F1CDB5B1B00B5E05B /* Debug */ = {
@@ -551,7 +652,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Xie Fabo (PXQFQ546UD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = test/Info.plist;
+				INFOPLIST_FILE = ChatToolView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.youplus.youplussssss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -568,7 +669,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Xie Fabo (PXQFQ546UD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = test/Info.plist;
+				INFOPLIST_FILE = ChatToolView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.youplus.youplussssss;
 				PRODUCT_NAME = "$(TARGET_NAME)";

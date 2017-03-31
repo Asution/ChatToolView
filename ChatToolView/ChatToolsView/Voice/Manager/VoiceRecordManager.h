@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 typedef BOOL(^XHPrepareRecorderCompletion)();
 typedef void(^XHStartRecorderCompletion)();
@@ -16,6 +17,8 @@ typedef void(^XHPeakPowerForChannel)(float peakPowerForChannel);
 
 
 @interface VoiceRecordManager : NSObject
+
+@property (nonatomic, strong) AVAudioRecorder *recorder;
 
 @property (nonatomic, copy) XHStopRecorderCompletion maxTimeStopRecorderCompletion;
 @property (nonatomic, copy) XHRecordProgress recordProgress;

@@ -2,7 +2,6 @@
 //  CCCameraManger.h
 //  CustomCamera
 //
-//  Created by zhouke on 16/8/31.
 //  Copyright © 2016年 All rights reserved.
 //
 

@@ -18,8 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="117" height="208"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kGl-YG-0wI">
-                        <rect key="frame" x="0.0" y="0.0" width="111.5" height="208"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kGl-YG-0wI">
+                        <rect key="frame" x="0.0" y="0.0" width="117" height="208"/>
                     </imageView>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTF-D7-aub">
                         <rect key="frame" x="0.0" y="0.0" width="111.5" height="208"/>
@@ -63,7 +63,7 @@
                 <constraint firstItem="wTF-D7-aub" firstAttribute="top" secondItem="MSj-gP-yZs" secondAttribute="top" id="KDN-3g-HU1"/>
                 <constraint firstItem="kGl-YG-0wI" firstAttribute="top" secondItem="MSj-gP-yZs" secondAttribute="top" id="KqS-lc-1P5"/>
                 <constraint firstItem="MjZ-tu-Yt4" firstAttribute="leading" secondItem="MSj-gP-yZs" secondAttribute="leading" id="N0j-2R-tq2"/>
-                <constraint firstAttribute="trailing" secondItem="kGl-YG-0wI" secondAttribute="trailing" constant="5.5" id="XTf-SQ-umC"/>
+                <constraint firstAttribute="trailing" secondItem="kGl-YG-0wI" secondAttribute="trailing" id="XTf-SQ-umC"/>
                 <constraint firstAttribute="trailing" secondItem="MjZ-tu-Yt4" secondAttribute="trailing" id="bMp-bB-g9M"/>
                 <constraint firstItem="MjZ-tu-Yt4" firstAttribute="top" secondItem="MSj-gP-yZs" secondAttribute="top" id="enM-cP-ZgS"/>
                 <constraint firstAttribute="trailing" secondItem="wTF-D7-aub" secondAttribute="trailing" constant="5.5" id="f8x-GB-lF2"/>
@@ -80,7 +80,7 @@
                 <outlet property="shadowView" destination="wTF-D7-aub" id="gzP-YX-GCQ"/>
                 <outlet property="statusView" destination="xzS-SR-xIW" id="niP-gn-Bln"/>
             </connections>
-            <point key="canvasLocation" x="-702" y="-35"/>
+            <point key="canvasLocation" x="-1153" y="-350"/>
         </collectionViewCell>
     </objects>
 </document>

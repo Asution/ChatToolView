@@ -16,7 +16,7 @@
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         //间隔
         self.minimumLineSpacing = 0;
-
+        
     }
     return self;
 }

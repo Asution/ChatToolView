@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef void (^CellConfigureBlock)(id cell, id item);
+typedef void (^CellConfigureBlock)(id cell, id item, NSIndexPath *indexPath);
 
 @interface BaseDataSource : NSObject <UITableViewDataSource, UICollectionViewDataSource>
 

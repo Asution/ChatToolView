@@ -7,6 +7,7 @@
 #import "ChatToolMacro.h"
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
+#import "ChatToolMacro.h"
 
 @interface VoiceRecordManager () <AVAudioRecorderDelegate> {
     NSTimer *_timer;
@@ -20,8 +21,6 @@
 
 @property (nonatomic, copy, readwrite) NSString *recordPath;
 @property (nonatomic, readwrite) NSTimeInterval currentTimeInterval;
-
-@property (nonatomic, strong) AVAudioRecorder *recorder;
 
 @end
 
@@ -110,10 +109,14 @@
             CLog(@"audioSession: %@ %ld %@", [error domain], (long)[error code], [[error userInfo] description]);
             return;
         }
-        
+//        if(SIMULATOR){
+//            NSLog(@"模拟器不支持语音功能");
+//            return;
+//        }
+         
         NSMutableDictionary * recordSetting = [NSMutableDictionary dictionary];
-        [recordSetting setValue :[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-        [recordSetting setValue:[NSNumber numberWithFloat:16000.0] forKey:AVSampleRateKey];
+        [recordSetting setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
+        [recordSetting setValue:[NSNumber numberWithFloat:8000.0] forKey:AVSampleRateKey];
         [recordSetting setValue:[NSNumber numberWithInt: 1] forKey:AVNumberOfChannelsKey];
         
         if (weakSelf) {

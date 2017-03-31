@@ -48,7 +48,7 @@
     cell.tag = indexPath.section * 100 + indexPath.row;
     
     id item = group.assetObjs[indexPath.row];
-    self.block(cell, item);
+    self.block(cell, item, indexPath);
 
     return cell;
 }

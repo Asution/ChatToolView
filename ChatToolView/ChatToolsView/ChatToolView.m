@@ -1,6 +1,5 @@
 //
 //  ChatToolView.m
-//  test
 //
 //  Created by 崔浩楠 on 2016/12/21.
 //  Copyright © 2016年 chn. All rights reserved.
@@ -25,14 +24,35 @@
 #pragma mark - 输入框
 #import "MessageTextView.h"
 
+#pragma mark - 表情云
+//#import <BQMM/BQMM.h>
+
+//#import "EMCDDeviceManager+Media.h"
+//#import "EMVoiceConverter.h"
+
+#pragma mark - 语音输入
+#import "ChatVoiceView.h"
+
+#import "TZImagePickerController.h"
+
+#import "TBCityIconFont.h"
+
+@implementation ToolBarBtn
+
+@end
+
+static NSInteger const haveNav = 0;
+
 static NSString *const placeHolderStr = @"请输入聊天内容...";
 
-static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 高度
+static NSInteger const functionViewY = 55 + 43;   //输入框 + 功能按钮 高度
 
-@interface ChatToolView() <UICollectionViewDelegate>
+@interface ChatToolView() <UICollectionViewDelegate, MMEmotionCentreDelegate, UITextViewDelegate, TZImagePickerControllerDelegate>
 
+@property (nonatomic , weak) UIView *chooseImagesView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic , weak) UIButton *albumBtn;    //相册按钮
+@property (nonatomic , weak) UIButton *sendImgsBtn;
 
 @property (nonatomic , weak) UIView *functionView;  //工具栏选项bg view
 
@@ -44,12 +64,11 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
 
 @property (nonatomic, strong) NSMutableArray *backupArr;
 @property (nonatomic, strong) NSMutableArray *imagesSelectedIndexAry;
+@property (nonatomic, strong) NSMutableArray *sendImagesAsset;
 @property (assign, nonatomic) NSInteger currentCount;
 
-@property (nonatomic, strong) UIViewController *superVc;
-
 @property (nonatomic, strong) VoiceRecordHUD *voiceRecordHUD;
-@property (nonatomic, strong) VoiceRecordManager *voiceRecordManager;
+//@property (nonatomic, strong) VoiceRecordManager *voiceRecordManager;
 @property (nonatomic , weak) UIView *talkView;  //聊天按钮 bg view
 
 @property (nonatomic , weak) UIView *lineView;  //线
@@ -57,27 +76,18 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
 
 @property (assign, nonatomic) CGFloat keyboardY;
 
-@property (nonatomic , assign) BOOL isTalking;  //是否正在聊天
+@property (nonatomic, assign) BOOL isVoiceTalking;  //是否正在语音聊天
+@property (assign, nonatomic) BOOL isShowExpression; //显示表情键盘
+@property (assign, nonatomic) BOOL isShowKeyBoard;
 
-/**  判断是不是超出了录音最大时长 */
-@property (nonatomic) BOOL isMaxTimeStop;
-/**
- *  是否取消錄音
- */
-@property (nonatomic, assign, readwrite) BOOL isCancelled;
+@property (assign, nonatomic) CGFloat keyBoardHeigth;   //键盘高度
 
-/**
- *  是否正在錄音
- */
-@property (nonatomic, assign, readwrite) BOOL isRecording;
+@property (assign, nonatomic) CGFloat keyBoderAdimationDuration; //键盘动画时间
+@property (nonatomic , assign) UIViewAnimationCurve curve;
 
-/**
- *  根据录音路径开始发送语音消息
- *
- *  @param voicePath        目标语音路径
- *  @param voiceDuration    目标语音时长
- */
-- (void)didSendMessageWithVoice:(NSString *)voicePath voiceDuration:(NSString*)voiceDuration;
+@property (nonatomic , weak) ChatVoiceView *voiceView;
+
+@property (nonatomic, strong) NSMutableArray *photoLibaryAry;
 
 @end
 
@@ -87,21 +97,26 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
 
 }
 
-- (instancetype)initWithImages:(NSArray *)images superView:(UIView *)superView{
+- (instancetype)initWithDataDictAry:(NSArray *)dictAry superView:(UIView *)superView frame:(CGRect)frame{
     self = [super init];
     if (self) {
+        self.frame = frame;
         self.imagesAry = [NSMutableArray array];
         self.imagesSelectedIndexAry = [NSMutableArray array];
-        
+        self.photoLibaryAry = [NSMutableArray array];
+        self.sendImagesAsset = [NSMutableArray array];
         serialPGQueue = dispatch_queue_create("com.haonan", DISPATCH_QUEUE_SERIAL);
         
-        [self initSubViewsWithImages:images];
-        [self initCollectioView];
-        [self initChooseImages];
+        [self initSubViewsWithDataDictAry:dictAry];
+        [self initChooseImagesView];     //选择图片view
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-
-        [superView addSubview:self];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHiden:) name:UIKeyboardWillHideNotification object:nil];
+        
+        if(!superView){
+            [superView addSubview:self];
+        }
         
         self.superVc = [self getCurrentViewController];
         
@@ -109,43 +124,171 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
     return self;
 }
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+#pragma mark - UITextViewDelegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+        //在这里做你响应return键的代码
+
+        [self sendMessageWithEmoji:nil messageText:self.messageTextView.text];
+        self.messageTextView.text = nil;
+        
+        
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    
+    return YES;
 }
 
 #pragma mark - 监听键盘的改变
 - (void)keyboardWillChangeFrame:(NSNotification *)notification{
     //1. 获取键盘的 Y 值
-    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat keyboardY = keyboardFrame.origin.y;
-    self.keyboardY = keyboardY;
+    NSDictionary *userInfo = notification.userInfo;
+    CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect beginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    self.keyBoardHeigth = endFrame.size.height;
+    
+    self.keyBoderAdimationDuration = duration;
+    self.curve = curve;
+    
+    void(^animations)() = ^{
+        [self _willShowKeyboardFromFrame:beginFrame toFrame:endFrame];
+    };
+    
+    [self aboutKeyBoderAnimationWithBlock:animations curve:curve];
+    
+    self.keyboardY = endFrame.origin.y;
 }
 
+- (void)_willShowKeyboardFromFrame:(CGRect)beginFrame toFrame:(CGRect)toFrame
+{
+    if (beginFrame.origin.y == [[UIScreen mainScreen] bounds].size.height)
+    {
+        [self _willShowBottomHeight:toFrame.size.height];
+    }
+    else if (toFrame.origin.y == [[UIScreen mainScreen] bounds].size.height)
+    {
+        self.isShowKeyBoard = NO;
+        [self _willShowBottomHeight:0];
+    }
+    else{
+        [self _willShowBottomHeight:toFrame.size.height];
+    }
+}
+
+//跟键盘有关的动画
+- (void)aboutKeyBoderAnimationWithBlock:(void (^)())animations curve:(UIViewAnimationCurve)curve{
+    [UIView animateWithDuration:self.keyBoderAdimationDuration + self.keyBoderAdimationDuration * 0.1 delay:0.0f options:(curve << 16 | UIViewAnimationOptionBeginFromCurrentState) animations:animations completion:nil];
+}
+
+
+/*!
+ @method
+ @brief 调整toolBar的高度
+ @param bottomHeight 底部菜单的高度 */
+
+- (void)_willShowBottomHeight:(CGFloat)bottomHeight
+{
+    CGRect fromFrame = self.frame;
+    CGRect toFrame = CGRectMake(fromFrame.origin.x, Screen_Height - bottomHeight - fromFrame.size.height, fromFrame.size.width, self.height);
+    self.frame = toFrame;
+    if(bottomHeight == 0){
+        self.y = Screen_Height - functionViewY - haveNav;
+        self.functionView.y = 43.0f;
+    }
+}
+
+#pragma 返回当前控件占用的高度，用来调节外部tableview / scrollview 滚动
+- (void)returnSelfHeight{
+    CGFloat changeHeight = functionViewY; //默认高度
+    
+    if(!self.chooseImagesView.hidden && !self.isShowKeyBoard){ //图片选择功能
+        changeHeight = functionViewY + self.chooseImagesView.height;
+        
+    }else if (self.isShowExpression || self.isShowKeyBoard){ //表情功能 / 键盘显示
+        changeHeight = self.height + self.keyBoardHeigth;
+        
+    }else if (self.isVoiceTalking){   //录音功能
+        changeHeight = 50 + 200;
+        
+    }else if (self.keyboardY < Screen_Height && self.keyboardY > 0){
+        changeHeight = functionViewY + Screen_Height - self.keyboardY;
+        
+    }else {
+        changeHeight = functionViewY;
+    }
+    
+    if ([self.toolViewDelegate respondsToSelector:@selector(chatToolbarDidChangeFrameToHeight:isShowKeyBoard:)]) {
+        [self.toolViewDelegate chatToolbarDidChangeFrameToHeight:changeHeight isShowKeyBoard:self.isShowKeyBoard];
+    }
+}
+
+
+#pragma mark - 获取当前控制器
 -(UIViewController *)getCurrentViewController{
-    for (UIView *next = [self superview]; next; next = next.superview) {
-        UIResponder *nextResponser = [next nextResponder];
-        if ([nextResponser isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponser;
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
         }
     }
-    return nil;
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return result;
+}
+
+- (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size{
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    // 绘制改变大小的图片
+    [img drawInRect:CGRectMake(0,0, size.width, size.height)];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage =UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    //返回新的改变大小后的图片
+    return scaledImage;
 }
 
 - (void)initChooseImages{
-    
-    CellConfigureBlock configureCell = ^(ImagesChooseCell *cell, id asset)
+    //回调block 处理
+    CellConfigureBlock configureCell = ^(ImagesChooseCell *cell, id asset, NSIndexPath *indexPath)
     {
         NSInteger cTag = cell.tag; // to determin if cell is reused
-        
+
         [[ImageDataAPI sharedInstance] getThumbnailForAssetObj:asset
                                                       withSize:Photo_Chat_List_Size
-                                                    completion:^(BOOL ret, UIImage *image)
+                                                    completion:^(BOOL ret, UIImage *image2)
          {
-             if (cell.tag == cTag) [cell configureForImage:image];
+             if (cell.tag == cTag) {
+                 [cell configureForImage:image2];
+             }
+             cell.asset = asset;
              [cell setSelectedWithAry:self.imagesSelectedIndexAry];
+             cell.indexPath = indexPath;
          }];
-        
-        cell.block = ^(ImagesChooseCell *cell, NSNumber *tag, BOOL selected){
+
+    
+        cell.imageClickBlock = ^(ImagesChooseCell *cell, NSNumber *tag, BOOL selected, NSIndexPath *indexPath, id asset){
             
             for (int i = 0; i < self.imagesAry.count; i++) {
                 NSData *data = UIImageJPEGRepresentation(cell.imageView.image, 1.0);
@@ -156,27 +299,42 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
             }
             
             if(selected && ![self.dataSource checkHaveTagWithAry:self.imagesSelectedIndexAry tag:tag]){
-                
-                [self.imagesAry addObject:cell.imageView.image];
+                if(cell.imageView.image)
+                    [self.imagesAry addObject:cell.imageView.image];
                 
                 self.currentCount ++;
                 NSMutableDictionary *dict = [NSMutableDictionary dictionary];
                 [dict setValue:@(self.currentCount) forKey:[NSString stringWithFormat:@"%@",tag]];
                 [self.imagesSelectedIndexAry addObject:dict];
+                
+                if(asset)
+                   [self.sendImagesAsset addObject:asset];
             }else{
                 self.currentCount --;
                 self.imagesSelectedIndexAry = [self.dataSource setSelectedAryAndUpdateCount:self.imagesSelectedIndexAry tag:tag];
+                
+                if(asset)
+                   [self.sendImagesAsset removeObject:asset];
             }
             [cell setSelectedWithAry:self.imagesSelectedIndexAry];
             [self.collectionView reloadData];
         };
     };
     
+    //collectionView 赋值
     MomentDataSource *pDataSource = [[MomentDataSource alloc] initWithCellIdentifier:@"ImagesChooseCell" configureCellBlock:configureCell];
     
     self.collectionView.dataSource = pDataSource; [self setDataSource:pDataSource];
     
     if ([[ImageDataAPI sharedInstance] haveAccessToPhotos]) [self loadMomentElementsShowIndicatorView:NO];
+}
+
+- (void)resetCollectionView{
+    self.currentCount = 0;
+    [self.imagesAry removeAllObjects];
+    [self.imagesSelectedIndexAry removeAllObjects];
+    [self.collectionView reloadData];
+    [self.collectionView setContentOffset:CGPointMake(0, 0)];
 }
 
 #pragma mark - 加载数据
@@ -248,19 +406,28 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
     [self.collectionView reloadData]; [data removeAllObjects];
 }
 
+- (void)returnKeyBoardHidden{
+    
+}
 
-- (void)initCollectioView{
+- (void)initChooseImagesView{
+    UIView *chooseImagesView = [[UIView alloc] initWithFrame:CGRectMake(0, 94, Screen_Width, 200)];
+    self.chooseImagesView = chooseImagesView;
+    [self addSubview:chooseImagesView];
     self.flowLayout = [[ImagesFlowLayout alloc] init];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(returnKeyBoardHidden)];
+    [chooseImagesView addGestureRecognizer:tap];
+    
     CGRect rct = self.bounds;
-    rct.size.height = 208.0f;
-    rct.origin.y = functionViewY;
+    rct.size.height = 147.0f;
+    rct.origin.y = 0;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:rct collectionViewLayout:self.flowLayout];
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.hidden = YES;   //暂时隐藏
+    self.chooseImagesView.hidden = YES;   //暂时隐藏
     
     UINib *cellNib = [UINib nibWithNibName:@"ImagesChooseCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:NSStringFromClass([ImagesChooseCell class])];
@@ -268,7 +435,7 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
     [self.collectionView setDelegate:self];
     
-    [self addSubview:_collectionView];
+    [self.chooseImagesView addSubview:_collectionView];
 }
 
 #pragma mark - UIActivityIndicatorView
@@ -283,14 +450,23 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
 }
 
 - (CGSize)collectionView:(nonnull UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return CGSizeMake(123.5, 208);
+    return CGSizeMake(110, 147);
 }
 
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
+}
 #pragma mark - 调用相机功能
 - (void)openCamera{
 //    if(![self authorizationCamera]) return;
-    
+    self.isVoiceTalking = NO;
     CameraViewController *vc = [[CameraViewController alloc] init];
+    vc.clickTypeBlock = ^(ToolsBtnClickType type, UIImage *image){
+        if (image) {
+            _sendImagsBlock ? _sendImagsBlock(@[image]) : nil;
+        }
+    };
     [self.superVc presentViewController:vc animated:YES completion:nil];
 }
 
@@ -314,246 +490,339 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
     return YES;
 }
 
-#pragma mark - 语音
-
-- (VoiceRecordHUD *)voiceRecordHUD {
-    if (!_voiceRecordHUD) {
-        _voiceRecordHUD = [[VoiceRecordHUD alloc] initWithFrame:CGRectMake(0, 0, 140, 140)];
-    }
-    return _voiceRecordHUD;
-}
-
-- (void)startRecord {
-    [self.voiceRecordHUD startRecordingHUDAtView:self.superview];
-    [self.voiceRecordHelper startRecordingWithStartRecorderCompletion:^{
-    }];
-}
-
-- (void)finishRecorded {
-    WeakSelf
-    [self.voiceRecordHUD stopRecordCompled:^(BOOL fnished) {
-        weakSelf.voiceRecordHUD = nil;
-    }];
-    [self.voiceRecordHelper stopRecordingWithStopRecorderCompletion:^{
-        [weakSelf didSendMessageWithVoice:weakSelf.voiceRecordHelper.recordPath voiceDuration:weakSelf.voiceRecordHelper.recordDuration];
-    }];
-}
-
-- (void)pauseRecord {
-    [self.voiceRecordHUD pauseRecord];
-}
-
-- (void)resumeRecord {
-    [self.voiceRecordHUD resaueRecord];
-}
-
-- (void)cancelRecord {
-    WeakSelf
-    [self.voiceRecordHUD cancelRecordCompled:^(BOOL fnished) {
-        weakSelf.voiceRecordHUD = nil;
-    }];
-    [self.voiceRecordHelper cancelledDeleteWithCompletion:^{
-        
-    }];
-}
-
-#pragma mark - 语音路径
-- (void)didSendMessageWithVoice:(NSString *)voicePath voiceDuration:(NSString*)voiceDuration {
-    CLog(@"send voicePath : %@", voicePath);
-//    if ([self.delegate respondsToSelector:@selector(didSendVoice:voiceDuration:fromSender:onDate:)]) {
-//        [self.delegate didSendVoice:voicePath voiceDuration:voiceDuration fromSender:self.messageSender onDate:[NSDate date]];
-//    }
-}
-
-
-- (VoiceRecordManager *)voiceRecordHelper {
-    if (!_voiceRecordManager) {
-        _isMaxTimeStop = NO;
-       
-        WeakSelf
-        _voiceRecordManager = [[VoiceRecordManager alloc] init];
-        _voiceRecordManager.maxTimeStopRecorderCompletion = ^{
-            CLog(@"已经达到最大限制时间了，进入下一步的提示");
-            weakSelf.isTalking = NO;
-            weakSelf.isMaxTimeStop = YES;
-            
-            [weakSelf finishRecorded];
-        };
-        _voiceRecordManager.peakPowerForChannel = ^(float peakPowerForChannel) {
-            weakSelf.voiceRecordHUD.peakPower = peakPowerForChannel;
-        };
-        _voiceRecordManager.maxRecordTime = kVoiceRecorderTime;
-    }
-    return _voiceRecordManager;
-}
-
 
 #pragma mark - 初始化一些功能
 
+#pragma mark - show text view
+- (void)showTextView{
+    [self hiddenAllFunction];
+    self.height = functionViewY + 20;
+    self.y = Screen_Height - self.height;
+    self.functionView.y = self.messageTextView.height + 10;
+    self.lineView.y = 0;
+    [self.messageTextView becomeFirstResponder];
+}
+
 #pragma mark - button delegate
 #pragma mark - 功能选择
-- (void)btnClick:(UIButton *)btn{
+- (void)toolBtnClick:(ToolBarBtn *)btn{
     btn.selected = !btn.selected;
-    ResignFirstResponder
+    
     [self hideIndicatorView];
-    switch (btn.tag) {
-        case 0: //相册
-            self.talkView.hidden = YES;                             //隐藏语音按钮
-            self.albumBtn.hidden = NO;                              //进入相册
-            self.collectionView.hidden = NO;                        //显示照片列表
-            self.messageTextView.hidden = NO;                       //显示输入框
-            self.isTalking = NO;                                    //语音输入
-            [self loadMomentElementsShowIndicatorView:YES];         //记载数据
-            [self bringSubviewToFront:self.albumBtn];               //将view放入最前面
-            [self bringSubviewToFront:self.idView];
-            self.lineView.y = 0;
-            self.messageTextView.y = 10;
-            self.height = self.collectionView.height + self.messageTextView.height + 49.5 + 10;
-            self.y = Screen_Height - self.height;
-            self.functionView.y = self.messageTextView.height + 11;
-            self.collectionView.y = self.messageTextView.height + 1 + 49.5 + 10;
-            self.albumBtn.y = self.messageTextView.height + 10 + 49.5 + 158;
+    
+    //显示相册的block animation
+    void(^showPhotoLibraryAnimations)() = ^{
+        [self showPhotoLibrary:btn];
+    };
+    
+    //显示语音的block animation
+    void(^showVoiceAnimations)() = ^{
+        [self showVoice:btn];
+    };
+    
+    BOOL cleanChooseImgs = NO;
+    switch (btn.typeEnum) {
+        case ChatToolViewTypeEnumPhoto: //相册
+            [self setNormalImage];
+            cleanChooseImgs = YES;
+            [self aboutKeyBoderAnimationWithBlock:showPhotoLibraryAnimations curve:self.curve];
+            
             break;
             
-        case 1: //相机
-            self.isTalking = NO;
-            [self openCamera];
-            break;
+        case ChatToolViewTypeEnumCamera: //相机
+            cleanChooseImgs = YES;
+            [self resignFirstResponderForView];
+            if(!SIMULATOR)
+                [self openCamera];
+            else
+                NSLog(@"模拟器不支持相机功能");
             
-        case 2: //语音
-            if(self.isTalking){ //文字输入
-                self.isTalking = NO;
-//                [self.messageTextView becomeFirstResponder];
-                [self hiddenAllFunction];
-                self.height = self.messageTextView.height + 49.5 + 20;
-                self.y = Screen_Height - self.height;
-                self.functionView.y = self.messageTextView.height + 10;
-                self.lineView.y = 0;
-            }else{  //语音输入
-                self.isTalking = YES;
-                self.talkView.hidden = NO;
-                self.albumBtn.hidden = YES;
-                self.collectionView.hidden = YES;
-                self.messageTextView.hidden = YES;
-                self.lineView.y = 0;
-                self.functionView.y = 0.5;
-                self.talkView.y = 50;
-                self.y = Screen_Height - 50 - 65;
+            if(self.isShowExpression){
+                self.isShowExpression = NO;
+                [self setNormalImage];
             }
             break;
             
+        case ChatToolViewTypeEnumVoice: //语音
+            [self setNormalImage];
+            cleanChooseImgs = YES;
+            [self aboutKeyBoderAnimationWithBlock:showVoiceAnimations curve:self.curve];
+            
+            break;
+            
+        case ChatToolViewTypeEnumEmoji: //表情
+            [self setNormalImage];
+            cleanChooseImgs = YES;
+            
+            [self showExpression:btn];
+            break;
+            
+        case ChatToolViewTypeEnumRed:
+            cleanChooseImgs = NO;
+            [self resignFirstResponderForView];
+            
+            if(self.isShowExpression){
+                self.isShowExpression = NO;
+                [self setNormalImage];
+            }
+            
+            break;
         default:
             break;
     }
+    //清空图片的选择
+    if(cleanChooseImgs)
+        [self resetCollectionView];
+    //返回当前控件所占用的高度
+    [self returnSelfHeight];
+    
+    self.clickTypeBtnBlock ? self.clickTypeBtnBlock(btn.typeEnum) : nil;
+}
+
+- (void)setNormalImage{
+    
+    for (int i = 0; i < self.functionView.subviews.count; i++) {
+        UIScrollView *scView = nil;
+        if ([self.functionView.subviews[i] isKindOfClass:[UIScrollView class]]) {
+            scView = self.functionView.subviews[i];
+        }
+        if (scView){
+            for (int j = 0; j < scView.subviews.count; j++) {
+                ToolBarBtn *btn = nil;
+                if([scView.subviews[j] isKindOfClass:[ToolBarBtn class]]){
+                    btn = scView.subviews[j];
+                    btn.selected = NO;
+                    if (btn.typeEnum == ChatToolViewTypeEnumVoice) {
+                        [btn setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e66e", 30, UIColorFromRGB(0xd8d8d8, 1))] forState:UIControlStateNormal];
+                    }
+                    if (btn.typeEnum == ChatToolViewTypeEnumPhoto) {
+                        [btn setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e66d", 30, UIColorFromRGB(0xd8d8d8, 1))] forState:UIControlStateNormal];
+                    }
+                    if (btn.typeEnum == ChatToolViewTypeEnumCamera) {
+                        [btn setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e66c", 30, UIColorFromRGB(0xd8d8d8, 1))] forState:UIControlStateNormal];
+
+                    }
+                    if (btn.typeEnum == ChatToolViewTypeEnumEmoji) {
+                        [btn setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e66a", 30, UIColorFromRGB(0xd8d8d8, 1))] forState:UIControlStateNormal];
+
+                    }
+                    if (btn.typeEnum == ChatToolViewTypeEnumRed) {
+                        [btn setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e66b", 30, UIColorFromRGB(0xd8d8d8, 1))] forState:UIControlStateNormal];
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+- (void)resignFirstResponderForView
+{
+    ResignFirstResponder
+}
+
+#pragma mark - expression
+#pragma mark - toolbar show expression
+// 点击发送表情
+- (void)didSelectEmoji:(nonnull MMEmoji *)emoji
+{
+    [self sendMessageWithEmoji:emoji messageText:nil];
+}
+
+// 点击发送提示表情
+- (void)didSelectTipEmoji:(nonnull MMEmoji *)emoji
+{
+    [self sendMessageWithEmoji:emoji messageText:nil];
+}
+
+- (void)didSendWithInput:(nonnull UIResponder<UITextInput> *)input{
+    
+    [self sendMessageWithEmoji:nil messageText:self.messageTextView.text];
+    self.messageTextView.text = @"";
+}
+
+- (void)tapOverlay{
+    
+}
+
+- (void)sendMessageWithEmoji:(MMEmoji *)emoji messageText:(NSString *)messageText{
+    self.sendExpressionOrTextBlock ? self.sendExpressionOrTextBlock(emoji, self.messageTextView.text) : nil;
+    
+    if([self.toolViewDelegate respondsToSelector:@selector(sendExpressionOrText:messageText:)]){
+        [self.toolViewDelegate sendExpressionOrText:emoji messageText:messageText];
+    }
+    
+    [self sendAfter];
+}
+
+- (void)sendAfter{
+    self.messageTextView.height = 43;
+    self.height = functionViewY;
+    self.y = Screen_Height - self.keyBoardHeigth - self.height;
+    self.functionView.y = 43.0f;
+    if ([self.toolViewDelegate respondsToSelector:@selector(chatToolbarDidChangeFrameToHeight:isShowKeyBoard:)]) {
+        [self.toolViewDelegate chatToolbarDidChangeFrameToHeight:self.keyBoardHeigth + functionViewY isShowKeyBoard:self.isShowKeyBoard];
+    }
+}
+
+
+- (void)showExpression:(UIButton *)typeBtn{
+    [self setNormalImage];
+    self.isVoiceTalking = NO;//语音输入
+    self.isShowExpression = !self.isShowExpression;   //取反
+    if (self.isShowExpression) {
+        [self resignFirstResponderForView];
+        [[MMEmotionCentre defaultCentre] attachEmotionKeyboardToInput:self.messageTextView];
+        if (!self.messageTextView.isFirstResponder) {
+            [self.messageTextView becomeFirstResponder];
+        }
+        [typeBtn setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e664", 30, UIColorFromRGB(0x2ab5f4, 1))] forState:UIControlStateNormal];
+
+    }
+    else {
+        [self.messageTextView becomeFirstResponder];
+        [[MMEmotionCentre defaultCentre] switchToDefaultKeyboard];
+    }
+}
+
+
+#pragma mark - toolBar voice
+- (void)showVoice:(UIButton *)typeBtn{
+    [self setNormalImage];
+    self.isShowExpression = NO;
+    if(self.isVoiceTalking){ //文字输入
+        self.isVoiceTalking = NO;
+        //[self.messageTextView becomeFirstResponder];
+        [self showTextView];
+    }else{  //语音输入
+        [typeBtn setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e669", 30, UIColorFromRGB(0x2ab5f4, 1))] forState:UIControlStateNormal];
+        self.isVoiceTalking = YES;
+        self.talkView.hidden = NO;
+        self.albumBtn.hidden = YES;
+        self.sendImgsBtn.hidden = YES;
+        self.chooseImagesView.hidden = YES;
+        self.messageTextView.hidden = YES;
+        [self resignFirstResponderForView];
+        self.lineView.y = 0;
+        self.functionView.y = 0.5;
+        self.talkView.y = 50;
+        self.y = Screen_Height - 50 - 200 - haveNav;
+        self.height = functionViewY + 200;
+    }
+    [[MMEmotionCentre defaultCentre] switchToDefaultKeyboard];
+}
+
+#pragma mark - toolBar show photo libary
+- (void)showPhotoLibrary:(UIButton *)typeBtn{
+    [self initChooseImages];
+    
+    self.chooseImagesView.hidden = !self.chooseImagesView.hidden; //显示照片列表
+    [self setNormalImage];
+    if(self.chooseImagesView.hidden){
+        [self showTextView];
+    }else{
+        [self resignFirstResponderForView];
+        [typeBtn setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e668", 30, UIColorFromRGB(0x2ab5f4, 1))] forState:UIControlStateNormal];
+
+        [self loadMomentElementsShowIndicatorView:YES];         //加载数据
+        self.isShowExpression = NO;                             //表情
+        self.isVoiceTalking = NO;                               //语音输入
+        self.talkView.hidden = YES;                             //隐藏语音按钮
+        self.albumBtn.hidden = NO;                              //进入相册
+        self.sendImgsBtn.hidden = NO;                              //进入相册
+        self.messageTextView.hidden = NO;                       //显示输入框
+        [self bringSubviewToFront:self.albumBtn];               //将view放入最前面
+        [self bringSubviewToFront:self.sendImgsBtn];
+        [self bringSubviewToFront:self.idView];
+        self.lineView.y = 0;
+        self.messageTextView.y = 10;
+        self.height = self.chooseImagesView.height + functionViewY;
+        self.y = Screen_Height - self.height - haveNav;
+        self.functionView.y = self.messageTextView.height + 11;
+        self.albumBtn.y = CGRectGetMaxY(self.collectionView.frame) + 10 + functionViewY;
+        self.sendImgsBtn.y = self.albumBtn.y + 5;
+    }
+    [[MMEmotionCentre defaultCentre] switchToDefaultKeyboard];
 }
 
 #pragma mark - 相册按钮
 - (void)albumBtnClick:(UIButton *)btn{
+    UIViewController *vc = [self getCurrentViewController];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+    if(self.sendImagesAsset.count > 0)
+        imagePickerVc.selectedAssets = self.sendImagesAsset;
+    // You can get the photos by block, the same as by delegate.
+    // 你可以通过block或者代理，来得到用户选择的照片.
+    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        self.sendImagsBlock ? self.sendImagsBlock(photos) : nil;
+    }];
+    
+    [vc presentViewController:imagePickerVc animated:YES completion:nil];
     NSLog(@"album %s",__FUNCTION__);
 }
 
-#pragma mark - 录音监听
-- (void)holdDownButtonTouchDown {
-    self.isCancelled = NO;
-    self.isRecording = NO;
-
-    [self prepareRecordingVoiceActionWithCompletion:^BOOL{
-        StrongBySelf
-        //這邊要判斷回調回來的時候, 使用者是不是已經早就鬆開手了
-        if (strongSelf && !strongSelf.isCancelled) {
-            strongSelf.isRecording = YES;
-            [strongSelf startRecord];
-            return YES;
-        } else {
-            return NO;
+#pragma mark - 发送图片按钮
+- (void)sendImgsBtnClick:(UIButton *)btn{
+    if(self.imagesAry){ //如果有选中的图片
+        
+        __block NSMutableArray *selectImgs = [NSMutableArray array];
+        
+        for(int i = 0; i < self.sendImagesAsset.count; i++){
+            id asset = self.sendImagesAsset[i];
+            [[ImageDataAPI sharedInstance] getImageForPhotoObj:asset withSize:CGSizeMake(808, 600) completion:^(BOOL ret, UIImage *image) {
+               
+                if (image) {
+                    [selectImgs addObject:image];
+                }
+                
+                if(i == self.sendImagesAsset.count-1){
+                    self.sendImagsBlock ? self.sendImagsBlock(selectImgs) : nil;
+                    [self.imagesSelectedIndexAry removeAllObjects];
+                    [self.sendImagesAsset removeAllObjects];
+                    [self.imagesAry removeAllObjects];
+                    self.currentCount = 0;
+                    [self.collectionView reloadData];
+                }
+            }];
         }
-    }];
-    
-}
-
-- (void)holdDownButtonTouchUpOutside {
-    
-    //如果已經開始錄音了, 才需要做取消的動作, 否則只要切換 isCancelled, 不讓錄音開始.
-    if (self.isRecording) {
-        [self cancelRecord];
-    } else {
-        self.isCancelled = YES;
+        
     }
-}
-
-- (void)holdDownButtonTouchUpInside {
-    
-    //如果已經開始錄音了, 才需要做結束的動作, 否則只要切換 isCancelled, 不讓錄音開始.
-    if (self.isRecording) {
-        if (self.isMaxTimeStop == NO) {
-            [self finishRecorded];
-        } else {
-            self.isMaxTimeStop = NO;
-        }
-    } else {
-        self.isCancelled = YES;
-    }
-}
-
-- (void)holdDownDragOutside {
-    
-    //如果已經開始錄音了, 才需要做拖曳出去的動作, 否則只要切換 isCancelled, 不讓錄音開始.
-    if (self.isRecording) {
-        [self resumeRecord];
-    } else {
-        self.isCancelled = YES;
-    }
-}
-
-- (void)holdDownDragInside {
-    
-    //如果已經開始錄音了, 才需要做拖曳回來的動作, 否則只要切換 isCancelled, 不讓錄音開始.
-    if (self.isRecording) {
-        [self pauseRecord];
-    } else {
-        self.isCancelled = YES;
-    }
-}
-
-- (void)prepareRecordingVoiceActionWithCompletion:(BOOL (^)(void))completion {
-    CLog(@"prepareRecordingWithCompletion");
-    [self prepareRecordWithCompletion:completion];
-}
-
-- (void)prepareRecordWithCompletion:(XHPrepareRecorderCompletion)completion {
-    [self.voiceRecordHelper prepareRecordingWithPath:[self getRecorderPath] prepareRecorderCompletion:completion];
-}
-
-#pragma mark - 获取语音路径
-- (NSString *)getRecorderPath {
-    NSString *recorderPath = nil;
-    recorderPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
-    NSDate *now = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];
-    recorderPath = [recorderPath stringByAppendingFormat:@"%@-MySound.m4a", [dateFormatter stringFromDate:now]];
-    return recorderPath;
 }
 
 #pragma mark - init tools button
-- (void)initSubViewsWithImages:(NSArray *)images{
-    UIView *functionView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, Screen_Width, 49.5)];
+- (void)initSubViewsWithDataDictAry:(NSArray *)dictAry{
+    UIView *functionView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, Screen_Width, 55)];
     self.functionView = functionView;
-
-    for (int i = 0; i < images.count; i++) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        CGFloat btnW = [UIScreen mainScreen].bounds.size.width * 0.2;
-        CGFloat btnH = 49.5f;
+    
+    CGFloat btnW = [UIScreen mainScreen].bounds.size.width * 0.2;
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.functionView.bounds];
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    if(dictAry.count > 0){
+        scrollView.contentSize = CGSizeMake(dictAry.count * btnW, 0);
+    }
+    [self.functionView addSubview:scrollView];
+    
+    for (int i = 0; i < dictAry.count; i++) {
+        ToolBarBtn *toolBtn = [ToolBarBtn buttonWithType:UIButtonTypeCustom];
+        CGFloat btnH = 55;
         CGFloat btnX = i * btnW;
         CGFloat btnY = 0;
-        btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
-        if ([images[i] isKindOfClass:[UIImage class]]) {
-            [btn setImage:images[i] forState:UIControlStateNormal];
+        toolBtn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+        if ([dictAry[i] isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dataDict = dictAry[i];
+            
+            if(dataDict[imageKey])
+                [toolBtn setImage:dataDict[imageKey] forState:UIControlStateNormal];
+            
+            if(dataDict[toolTypeKey])
+                toolBtn.typeEnum = [[NSString stringWithFormat:@"%@",dataDict[toolTypeKey]] integerValue];
         }
-        btn.tag = i;
-        [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        toolBtn.tag = i;
+        [toolBtn addTarget:self action:@selector(toolBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
-        [functionView addSubview:btn];
+        [scrollView addSubview:toolBtn];
     }
     [self addSubview:functionView];
     
@@ -566,36 +835,43 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
     
     //显示相册按钮
     UIButton *albumBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    albumBtn.frame = CGRectMake(15, self.messageTextView.height + 49.6 + 20 + 158, 35, 35);
+    albumBtn.frame = CGRectMake(15, self.messageTextView.height + 49.6 + 20 + 158, 50, 35);
     albumBtn.hidden = YES;
-    albumBtn.backgroundColor = [UIColor redColor];
+    albumBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [albumBtn setTitle:@"相册" forState:UIControlStateNormal];
+    [albumBtn setTitleColor:UIColorFromRGB(0x0FADFE , 1) forState:UIControlStateNormal];
     [albumBtn addTarget:self action:@selector(albumBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     self.albumBtn = albumBtn;
-//    [self addSubview:albumBtn];
+    [self addSubview:albumBtn];
+    
+    //发送图片按钮
+    UIButton *sendImgsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    sendImgsBtn.frame = CGRectMake(Screen_Width - 65, albumBtn.y + 5, 50, 25);
+    sendImgsBtn.hidden = YES;
+    sendImgsBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [sendImgsBtn setTitle:@"发送" forState:UIControlStateNormal];
+    [sendImgsBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [sendImgsBtn setBackgroundColor:UIColorFromRGB(0x0FADFE, 1)];
+    [sendImgsBtn addTarget:self action:@selector(sendImgsBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    sendImgsBtn.layer.cornerRadius = 3;
+    sendImgsBtn.layer.masksToBounds = YES;
+    self.sendImgsBtn = sendImgsBtn;
+    [self addSubview:sendImgsBtn];
     
     //说话按钮bg view
-    UIView *talkView = [[UIView alloc] initWithFrame:CGRectMake(0, functionViewY, Screen_Width, 65)];    //聊天bg view
+    UIView *talkView = [[UIView alloc] initWithFrame:CGRectMake(0, functionViewY, Screen_Width, 200)];    //聊天bg view
     self.talkView = talkView;
     [self addSubview:talkView];
     self.talkView.hidden = YES; //暂时隐藏
     
-    //按住说话按钮
-    UIButton *talkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    talkBtn.frame = CGRectMake(20, 0, Screen_Width - 40, 45);
-    [talkView addSubview:talkBtn];
+    //按住说话
+    ChatVoiceView *chatVoice = [[ChatVoiceView alloc] initWithFrame:CGRectMake(0, 0, self.width, 200)];
+    [talkView addSubview:chatVoice];
+    chatVoice.sendMessageWithVoiceBlock = ^(NSString *voicePath, NSString *voiceDuration){
+        self.sendMessageWithVoiceBlock != nil ? self.sendMessageWithVoiceBlock(voicePath, voiceDuration) : nil;
+    };
+    self.voiceView = chatVoice;
     
-    talkBtn.backgroundColor = UIColorFromRGB(0xffe362, 1);
-    talkBtn.layer.cornerRadius = 5;
-    talkBtn.layer.masksToBounds = YES;
-    talkBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [talkBtn setTitle:@"按住说话" forState:UIControlStateNormal];
-    [talkBtn setTitleColor:UIColorFromRGB(0x5a5858, 1) forState:UIControlStateNormal];
-    
-    [talkBtn addTarget:self action:@selector(holdDownButtonTouchDown) forControlEvents:UIControlEventTouchDown];
-    [talkBtn addTarget:self action:@selector(holdDownButtonTouchUpOutside) forControlEvents:UIControlEventTouchUpOutside];
-    [talkBtn addTarget:self action:@selector(holdDownButtonTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
-    [talkBtn addTarget:self action:@selector(holdDownDragOutside) forControlEvents:UIControlEventTouchDragExit];
-    [talkBtn addTarget:self action:@selector(holdDownDragInside) forControlEvents:UIControlEventTouchDragEnter];
     
     //输入框
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Screen_Width, 0.5)];
@@ -604,37 +880,93 @@ static NSInteger const functionViewY = 49.5 + 43;   //输入框 + 功能按钮 �
     [self addSubview:lineView];
     
     MessageTextView *messageTextView = [[MessageTextView alloc] initWithFrame:CGRectMake(10, 10, Screen_Width - 20, 33)];
+    messageTextView.delegate = self;
     messageTextView.placeHolder = placeHolderStr;
     messageTextView.placeHolderTextColor = UIColorFromRGB(0xC1BDBB,1);
+    messageTextView.returnKeyType = UIReturnKeySend;
     self.messageTextView = messageTextView;
     [self addSubview:messageTextView];
     
     messageTextView.block = ^(CGFloat maxTextHeight, NSString *text, BOOL isChange){
-        
         [self hiddenAllFunction];
         if(maxTextHeight <= 120){
             self.messageTextView.height = maxTextHeight;
             self.messageTextView.y = 10;
             self.lineView.y = 0;
             self.functionView.y = maxTextHeight + 10;
-            self.height = 59.5 + maxTextHeight;
+            self.height = 65.5 + maxTextHeight;
         }else{
             self.messageTextView.height = 120;
-            self.height = 130 + 49.5;
+            self.height = 130 + 55;
             self.functionView.y = 130;
         }
-        self.y = self.keyboardY - self.height;
+        self.y = Screen_Height - haveNav - self.height - self.keyBoardHeigth;
+        if ([self.toolViewDelegate respondsToSelector:@selector(chatToolbarDidChangeFrameToHeight:isShowKeyBoard:)]) {
+            [self.toolViewDelegate chatToolbarDidChangeFrameToHeight:Screen_Height - self.y isShowKeyBoard:self.isShowKeyBoard];
+        }
     };
     
+    UIView *expressionRightView = [[UIView alloc] initWithFrame:CGRectMake(self.width - 1, 0, 1, 1)];
+    [self addSubview:expressionRightView];
+    
+    [[MMEmotionCentre defaultCentre] shouldShowShotcutPopoverAboveView:self withInput:self.messageTextView];
+    [MMEmotionCentre defaultCentre].delegate = self;
+}
+
+- (BOOL)endEditing:(BOOL)force
+{
+    if(self.isVoiceTalking && self.voiceView.isRecording)
+        return NO;
+    
+    if(!self.chooseImagesView.hidden || self.isVoiceTalking || self.isShowExpression || force){
+        //隐藏所有功能
+        [self hiddenAllFunction];
+        [self.messageTextView endEditing:YES];
+        //隐藏表情键盘
+        [[MMEmotionCentre defaultCentre] switchToDefaultKeyboard];
+        [self setNormalImage];
+        self.isVoiceTalking = NO;
+        self.isShowExpression = NO;
+        
+        [self returnSelfHeight];
+    }
+    return YES;
+}
+
+- (void)keyboardWillShow:(NSNotification *)notf{
+    self.isShowKeyBoard = YES;
+    [self returnSelfHeight];
+    [self setNormalImage];
+}
+
+- (void)keyboardWillHiden:(NSNotification *)notf{
+    self.isShowKeyBoard = NO;
+    if(!self.chooseImagesView.hidden) return;
+    if(self.isVoiceTalking) return;
+    if(self.isShowExpression) return;
+    [self returnSelfHeight];
 }
 
 #pragma mark - 隐藏所有功能,回到最初状态
 - (void)hiddenAllFunction{
     [self hideIndicatorView];
     self.albumBtn.hidden = YES;                     //相册库隐藏
-    self.collectionView.hidden = YES;               //相册隐藏
+    self.sendImgsBtn.hidden = YES;                  //发送图片隐藏
+    self.chooseImagesView.hidden = YES;               //相册隐藏
     self.talkView.hidden = YES;                     //语音按钮隐藏
     self.messageTextView.hidden = NO;               //文字输show
+    [self _willShowBottomHeight:0];
 }
+
+
+- (void)dealloc{
+    self.sendMessageWithVoiceBlock = nil;
+    self.sendExpressionOrTextBlock = nil;
+    self.clickTypeBtnBlock = nil;
+    self.sendImagsBlock = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 
 @end

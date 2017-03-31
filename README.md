@@ -2,7 +2,7 @@
 
 这是一个基于环信（如果你也基于环信，那么修改的地方将会很少） 的IM Chat Tools Bar View
 
-##这是最简单的初始化
+###这是最简单的初始化
 ``` 
     CGFloat toolBarHeight = 43 + 55;
     // select status UIColorFromRGB(0x2ab5f4, 1)
@@ -30,4 +30,4 @@
     _easeMessageViewController.chatToolbar = tooBar;
     tooBar.toolViewDelegate = self;
  ```
-##其他功能可以深入探索，写的也相对简单
+###其他功能可以深入探索，写的也相对简单

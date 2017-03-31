@@ -15,12 +15,14 @@
 
 @property (nonatomic, strong) PHImageManager *manager;
 
+@property (nonatomic, strong) NSMutableArray *allPhotoAry;
+@property (nonatomic, strong) NSMutableArray *modelsAry;
 - (BOOL)haveAccessToPhotos;
 
 - (void)getMomentsWithAscending:(BOOL)ascending
                      completion:(void (^)(BOOL ret, id obj))completion;
 
-- (void)getImageForPHAsset:(PHAsset *)asset
+- (void)getImageForPHAsset:(id)asset
                   withSize:(CGSize)size
                 completion:(void (^)(BOOL ret, UIImage *image))completion;
 

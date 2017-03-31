@@ -8,10 +8,28 @@
 
 #import "PHSourceManager.h"
 #import "AlbumObj.h"
+#import <TZImageManager.h>
+#import <TZAssetModel.h>
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 @implementation PHSourceManager
+
+- (NSMutableArray *)modelsAry
+{
+    if (!_modelsAry) {
+        _modelsAry = [NSMutableArray array];
+    }
+    return _modelsAry;
+}
+
+- (NSMutableArray *)allPhotoAry
+{
+    if (!_allPhotoAry) {
+        _allPhotoAry = [NSMutableArray array];
+    }
+    return _allPhotoAry;
+}
 
 - (instancetype)init
 {
@@ -60,14 +78,14 @@
                                                          options:option];
         if ([moment.assetObjs count]) [momArray addObject:moment];
     }
-    
     completion(YES, momArray);
 }
 
-- (void)getImageForPHAsset:(PHAsset *)asset
+- (void)getImageForPHAsset:(id)asset
                   withSize:(CGSize)size
                 completion:(void (^)(BOOL ret, UIImage *image))completion
 {
+    
     if (![asset isKindOfClass:[PHAsset class]])
     {
         completion(NO, nil); return;
@@ -76,7 +94,9 @@
     NSInteger r = [UIScreen mainScreen].scale;
     
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.deliveryMode = 1;
     [options setSynchronous:YES]; // called exactly once
+//    options.deliveryMode = 1;
     
     [self.manager requestImageForAsset:asset
                             targetSize:CGSizeMake(size.width*r, size.height*r)
@@ -84,7 +104,11 @@
                                options:options
                          resultHandler:^(UIImage *result, NSDictionary *info)
     {
-        completion(YES, result);
+        BOOL downloadFinined = ![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey] && ![[info objectForKey:PHImageResultIsDegradedKey] boolValue];
+
+        if (downloadFinined) {
+            completion(YES, result);
+        }
     }];
 }
 
@@ -153,7 +177,7 @@
             
             AlbumObj *obj = [AlbumObj new]; obj.type = col.assetCollectionSubtype;
             obj.name = col.localizedTitle; obj.collection = fRes; obj.count = fRes.count;
-            
+            NSLog(@"%@",obj.posterImage);
             if (fRes.count > 0) [tmpAry addObject:obj]; // drop empty album
         }
     }

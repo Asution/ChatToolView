@@ -75,6 +75,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+## Hyphenate
+
+Hyphenate Inc. 2016
+
 ## MBProgressHUD
 
 Copyright (c) 2009-2015 Matej Bukovinski

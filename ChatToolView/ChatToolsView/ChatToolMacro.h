@@ -34,9 +34,18 @@
 #define UIColorFromRGB(rgbValue, alph) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(alph)]
 
 #define kVoiceRecorderTime 60.0 //max time
+#define kVoiceRecorderLowTime 1.0 //max time
 
 #define ResignFirstResponder \
 UIWindow *window = [UIApplication sharedApplication].keyWindow;\
 [window endEditing:YES];
+
+
+#if TARGET_IPHONE_SIMULATOR
+#define SIMULATOR 1
+#elif TARGET_OS_IPHONE
+#define SIMULATOR 0
+#endif
+
 
 #endif /* ChatToolMacro_h */
