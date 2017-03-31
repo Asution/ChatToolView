@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController">
+            <connections>
+                <outlet property="showImgBgView" destination="IsY-P3-ipq" id="PBb-2T-uvj"/>
+                <outlet property="showImgView" destination="BrX-Om-d3E" id="7C9-tC-ZXb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKL-Gk-5rf">
+                    <rect key="frame" x="152" y="559" width="70" height="70"/>
+                    <color key="backgroundColor" red="0.94117647410000005" green="0.49803921579999999" blue="0.35294118520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="W3Y-bD-39e"/>
+                        <constraint firstAttribute="width" constant="70" id="fSt-tV-UqY"/>
+                    </constraints>
+                    <connections>
+                        <action selector="takePhotoClick:" destination="-1" eventType="touchUpInside" id="gNg-t1-qUb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKY-sR-3Ov">
+                    <rect key="frame" x="250" y="579" width="109" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="frot or back">
+                        <color key="titleColor" red="0.94117647410000005" green="0.49803921579999999" blue="0.35294118520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="frontSwitchClick:" destination="-1" eventType="touchUpInside" id="XEE-rv-zif"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pw6-8m-f4F">
+                    <rect key="frame" x="16" y="579" width="52" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="back">
+                        <color key="titleColor" red="0.94117647410000005" green="0.49803921579999999" blue="0.35294118520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="dissmisBtnClick:" destination="-1" eventType="touchUpInside" id="NJB-Jz-Htd"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="GKL-Gk-5rf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0ul-ia-ljc"/>
+                <constraint firstAttribute="bottom" secondItem="GKL-Gk-5rf" secondAttribute="bottom" constant="38" id="EBb-un-8Py"/>
+            </constraints>
+            <point key="canvasLocation" x="-355" y="73"/>
+        </view>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="IsY-P3-ipq" userLabel="Show Image View">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BrX-Om-d3E">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1G-WL-lyw">
+                    <rect key="frame" x="0.0" y="608" width="375" height="59"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wI6-u0-WTb">
+                            <rect key="frame" x="29.5" y="0.0" width="30" height="59"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="重拍">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="replaceClick:" destination="-1" eventType="touchUpInside" id="9lF-5m-MuY"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ybh-2Z-Vb3">
+                            <rect key="frame" x="158.5" y="0.0" width="58" height="59"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="取消拍照">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancleClick:" destination="-1" eventType="touchUpInside" id="s7S-CA-rar"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFu-oz-VWN">
+                            <rect key="frame" x="315.5" y="0.0" width="30" height="59"/>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                            <state key="normal" title="发送">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="sendClick:" destination="-1" eventType="touchUpInside" id="w2z-Vv-0Ro"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Ybh-2Z-Vb3" firstAttribute="centerY" secondItem="x1G-WL-lyw" secondAttribute="centerY" id="1f8-tL-1qA"/>
+                        <constraint firstAttribute="trailing" secondItem="YFu-oz-VWN" secondAttribute="trailing" constant="29.5" id="1rA-6v-sJd"/>
+                        <constraint firstItem="YFu-oz-VWN" firstAttribute="top" secondItem="x1G-WL-lyw" secondAttribute="top" id="5J9-l6-eBh"/>
+                        <constraint firstAttribute="bottom" secondItem="wI6-u0-WTb" secondAttribute="bottom" id="QtC-Iu-m2a"/>
+                        <constraint firstItem="Ybh-2Z-Vb3" firstAttribute="centerX" secondItem="x1G-WL-lyw" secondAttribute="centerX" id="UD4-GQ-hSZ"/>
+                        <constraint firstItem="wI6-u0-WTb" firstAttribute="top" secondItem="x1G-WL-lyw" secondAttribute="top" id="ZuU-9u-Bmx"/>
+                        <constraint firstItem="wI6-u0-WTb" firstAttribute="leading" secondItem="x1G-WL-lyw" secondAttribute="leading" constant="29.5" id="ds9-zA-Zk0"/>
+                        <constraint firstAttribute="bottom" secondItem="YFu-oz-VWN" secondAttribute="bottom" id="hJM-jx-whY"/>
+                        <constraint firstItem="Ybh-2Z-Vb3" firstAttribute="top" secondItem="x1G-WL-lyw" secondAttribute="top" id="las-KO-K07"/>
+                        <constraint firstAttribute="height" constant="59" id="oeZ-D6-26F"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="BrX-Om-d3E" firstAttribute="leading" secondItem="IsY-P3-ipq" secondAttribute="leading" id="BGx-PT-JCT"/>
+                <constraint firstItem="x1G-WL-lyw" firstAttribute="leading" secondItem="IsY-P3-ipq" secondAttribute="leading" id="BJh-c7-MkL"/>
+                <constraint firstAttribute="bottom" secondItem="x1G-WL-lyw" secondAttribute="bottom" id="D2N-G6-paX"/>
+                <constraint firstAttribute="bottom" secondItem="BrX-Om-d3E" secondAttribute="bottom" id="E4v-VZ-021"/>
+                <constraint firstItem="BrX-Om-d3E" firstAttribute="top" secondItem="IsY-P3-ipq" secondAttribute="top" id="LOv-sK-67P"/>
+                <constraint firstAttribute="trailing" secondItem="x1G-WL-lyw" secondAttribute="trailing" id="SXh-oj-fG4"/>
+                <constraint firstAttribute="trailing" secondItem="BrX-Om-d3E" secondAttribute="trailing" id="UuA-Kd-vlx"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="73"/>
+        </view>
+    </objects>
+</document>

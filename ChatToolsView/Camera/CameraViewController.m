@@ -9,6 +9,7 @@
 #import "CameraViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "CCCameraManger.h"
+#import "TBCityIconFont.h"
 
 @interface CameraViewController ()
 

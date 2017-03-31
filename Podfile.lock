@@ -1,12 +1,44 @@
 PODS:
   - BQMM (1.7.9)
+  - DACircularProgress (2.3.1)
+  - EaseUI (3.3.0):
+    - MJRefresh (~> 3.1.0)
+    - MWPhotoBrowser (~> 2.1.1)
+  - MBProgressHUD (0.9.2)
+  - MJRefresh (3.1.12)
+  - MWPhotoBrowser (2.1.2):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - TZImagePickerController (1.7.8)
 
 DEPENDENCIES:
   - BQMM
+  - EaseUI (from `https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git`)
+  - TZImagePickerController
+
+EXTERNAL SOURCES:
+  EaseUI:
+    :git: https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git
+
+CHECKOUT OPTIONS:
+  EaseUI:
+    :commit: 6a555b3362f695b381da8de6902b43a3fcec3522
+    :git: https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git
 
 SPEC CHECKSUMS:
   BQMM: 8d414591ae0aaf1809e71dcf1dbff4f2dcf7800b
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  EaseUI: 477d4115ab4087a2bc258a13d8431f142d5c2028
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  TZImagePickerController: 87a138ae5d585225aaa6c8abe2cface0f0ad19dd
 
-PODFILE CHECKSUM: 267357e48c18f1b92ac4c8e232f0b1674189a394
+PODFILE CHECKSUM: 568c31ff9de3cc812e5c9723ec55c6b0e81bdb27
 
 COCOAPODS: 1.1.1

@@ -1,0 +1,17 @@
+//
+//  FeedHeaderView.h
+//  test
+//
+//  Created by 崔浩楠 on 2017/3/22.
+//  Copyright © 2017年 chn. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface FeedHeaderView : UIView
+
+- (instancetype)initInstance;
+
+@property (nonatomic, strong) NSArray *dataAry;
+
+@end
