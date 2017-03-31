@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChatVoiceView">
+            <rect key="frame" x="0.0" y="0.0" width="441" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AX0-y4-xQy" customClass="SCSiriWaveformView">
+                    <rect key="frame" x="-20" y="0.0" width="481" height="200"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="戳我肚纸发语音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZg-Pd-boW">
+                    <rect key="frame" x="178" y="11" width="86" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E02-vO-3RF" customClass="HighlightedButton">
+                    <rect key="frame" x="179" y="43" width="83" height="117"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="117" id="0he-gk-JNb"/>
+                        <constraint firstAttribute="width" constant="82.5" id="ww5-vf-eek"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="chat_voice"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="E02-vO-3RF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0br-Vd-Gxt"/>
+                <constraint firstItem="E02-vO-3RF" firstAttribute="top" secondItem="yZg-Pd-boW" secondAttribute="bottom" constant="17.5" id="1YT-qh-C26"/>
+                <constraint firstItem="AX0-y4-xQy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-20" id="5Ze-ji-pvI"/>
+                <constraint firstAttribute="trailing" secondItem="AX0-y4-xQy" secondAttribute="trailing" constant="-20" id="JYO-e4-xON"/>
+                <constraint firstItem="yZg-Pd-boW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10.5" id="hmQ-5K-eWE"/>
+                <constraint firstItem="AX0-y4-xQy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="th1-DO-0kd"/>
+                <constraint firstAttribute="bottom" secondItem="AX0-y4-xQy" secondAttribute="bottom" id="yre-c3-dVJ"/>
+                <constraint firstItem="yZg-Pd-boW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zCi-yQ-tUZ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="siriView" destination="AX0-y4-xQy" id="nXb-Ur-heW"/>
+                <outlet property="timesLabel" destination="yZg-Pd-boW" id="Ikn-TZ-KYt"/>
+                <outlet property="voiceBtn" destination="E02-vO-3RF" id="YI4-S0-n8P"/>
+            </connections>
+            <point key="canvasLocation" x="-1166" y="-41"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chat_voice" width="165" height="234"/>
+    </resources>
+</document>
